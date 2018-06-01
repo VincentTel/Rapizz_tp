@@ -1,0 +1,39 @@
+/*
+ * Background Views
+ */
+.root
+{
+	-fx-background-color:  white;
+}
+.LoginBG
+{
+	-fx-background-color: #c00a27;
+}
+.MenuBG
+{
+	-fx-background-color:  #c00a27;
+}
+.HomeBG{
+    -fx-background-image: url("com/RaPizz/images/BGHome.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+.MenuButton
+{
+	-fx-background-color:  #c00a27;
+	-fx-text-fill: white;
+    -fx-font-size: 25px;
+}
+
+.MenuButton:hover
+{
+	-fx-background-color:  #bc2d45;
+	
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}

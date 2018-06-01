@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+
+<GridPane fx:id="Home_GridPane" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.HomeControleur">
+   <children>
+      <AnchorPane GridPane.columnSpan="2147483647">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="RaPizz Information" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+         <children>
+            <Label alignment="CENTER" text="Email :  contact@rapizz.com" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <children>
+            <Label alignment="CENTER" text="Adresse: 100, Rue de l'Alma - 59100 Roubaix" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Phone:  07 64 62 59 59" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <Label text="Lundi:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="11:30–14:30, 18:30–22:30" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Mardi:" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="11:30–14:30, 18:30–22:30" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Mercredi:" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="11:30–14:30, 18:30–22:30" GridPane.columnIndex="1" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Jeudi:" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="11:30–14:30, 18:30–22:30" GridPane.columnIndex="1" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Vendredi:" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="18:30–23:30" GridPane.columnIndex="1" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Samedi:" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </Label>
+      <Label text="11:30–14:30, 18:30–22:30" GridPane.columnIndex="1" GridPane.rowIndex="11">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label text="18:30–23:30" GridPane.columnIndex="1" GridPane.rowIndex="12">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label text="Dimanche:" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </Label>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+</GridPane>
