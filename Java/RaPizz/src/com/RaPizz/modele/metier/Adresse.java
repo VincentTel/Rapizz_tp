@@ -54,6 +54,13 @@ public class Adresse {
 		this.Ville = a.getVille();
 		this.Cp = a.getCp();
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Adress:" + numRue + ", " + rue + " " + Ville + " " + Cp + "";
+	}
 
 	@Override
 	public int hashCode() {

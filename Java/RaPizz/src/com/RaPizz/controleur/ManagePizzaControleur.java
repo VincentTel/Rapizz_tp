@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
@@ -31,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
@@ -73,8 +75,7 @@ public class ManagePizzaControleur extends AbstractControleur {
 	public ManagePizzaControleur() {
 		super(Contr.MANAGEPIZZA);		
 	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	@FXML
 	private void initialize() {
 		
@@ -96,7 +97,7 @@ public class ManagePizzaControleur extends AbstractControleur {
 				      return new ReadOnlyStringWrapper( val );
 				  });
 		
-		Photo_TableColumn.setCellValueFactory(cellData ->  new SimpleObjectProperty( cellData.getValue() ));
+		Photo_TableColumn.setCellValueFactory(cellData ->  new SimpleObjectProperty<Pizza>( cellData.getValue() ));
 		Photo_TableColumn.setCellFactory(cellData -> {
 	        final ImageView imageview = new ImageView();
 	        TableCell<Pizza, Pizza> cell = new TableCell<Pizza, Pizza>() {
@@ -139,12 +140,14 @@ public class ManagePizzaControleur extends AbstractControleur {
 		            setText(item.getDesignation());
 		        }
 		    }
-		});
+		}); 
 		
 		Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>> actionDelCellFactory = new Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>>()
 		{
 			public TableCell<Pizza, HBox> call(TableColumn<Pizza, HBox> p) {
-				ImageView delImg = new ImageView(new Image("com/RaPizz/images/del-icon.png"));	
+				Label delImg = new Label("y");
+				delImg.setTextFill(Color.RED);
+				delImg.getStyleClass().add("Icons");
 				TableCell<Pizza, HBox> cell = new TableCell<Pizza, HBox>() {
 						                				@Override
 						                				public void updateItem(HBox hb, boolean empty) {
@@ -167,12 +170,14 @@ public class ManagePizzaControleur extends AbstractControleur {
 		Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>>()
 		{
 			public TableCell<Pizza, HBox> call(TableColumn<Pizza, HBox> p) {
-				ImageView delImg = new ImageView(new Image("com/RaPizz/images/update-icon.png"));	
+				Label upImg = new Label("C");
+				upImg.setTextFill(Color.GREEN);
+				upImg.getStyleClass().add("Icons");	
 				TableCell<Pizza, HBox> cell = new TableCell<Pizza, HBox>() {
 						                				@Override
 						                				public void updateItem(HBox hb, boolean empty) {
 								                            super.updateItem(hb, empty);	
-								                          	setGraphic(delImg);
+								                          	setGraphic(upImg);
 						                				}
 				};	
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -217,26 +222,31 @@ public class ManagePizzaControleur extends AbstractControleur {
 	}
 	
 	private void Upd()
-	{
-		Pizza p = null;
-		if(modele.getPizzaImage().getValue()  == null || modele.getPizzaImage().getValue().isError())
-		{
-
-			if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
-				p=new Pizza(modele.getIdPizzaProperty().getValue(), modele.getDesignationProperty().getValue(), modele.getPrixProperty().getValue(), Ingredrients_ListView.getSelectionModel().getSelectedItems());
-			else
-				p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue());
+	{	
+		if(!modele.getDesignationProperty().getValue().equals("")&&
+			!modele.getDesignationProperty().getValue().equals("")&&	
+			modele.getPrixProperty().getValue() > 0	)
+			{
+				Pizza p = null;
+				if(modele.getPizzaImage().getValue()  == null || modele.getPizzaImage().getValue().isError())
+				{
 		
-		}else			
-		{
-			if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
-				p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
-			else
-				p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue());
-		}		
-		this.getService().UpdatePizza(p);
-		HideUpdateButton();
-		modele.modeleInit();
+					if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
+						p=new Pizza(modele.getIdPizzaProperty().getValue(), modele.getDesignationProperty().getValue(), modele.getPrixProperty().getValue(), Ingredrients_ListView.getSelectionModel().getSelectedItems());
+					else
+						p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue());
+				
+				}else			
+				{
+					if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
+						p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
+					else
+						p = new Pizza(modele.getIdPizzaProperty().getValue(),modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue());
+				}		
+				this.getService().UpdatePizza(p);
+				HideUpdateButton();
+				modele.modeleInit();
+			}
 		update();				
 	}
 	
@@ -248,25 +258,29 @@ public class ManagePizzaControleur extends AbstractControleur {
 	
 	private void add()
 	{
-		Pizza p = null;
-		if(modele.getPizzaImage().getValue()  == null || modele.getPizzaImage().getValue().isError())
+		if(!modele.getDesignationProperty().getValue().equals("")&&
+		!modele.getDesignationProperty().getValue().equals("")&&	
+		modele.getPrixProperty().getValue() > 0)
 		{
-			if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
-				p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
-			else 
-				p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue());
-		}
-		else
-		{
-			if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
-				p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
+			Pizza p = null;
+			if(modele.getPizzaImage().getValue()  == null || modele.getPizzaImage().getValue().isError())
+			{
+				if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
+					p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
+				else 
+					p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue());
+			}
 			else
-				p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue());
+			{
+				if(Ingredrients_ListView.getSelectionModel().getSelectedItems().size()>0)
+					p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue(),Ingredrients_ListView.getSelectionModel().getSelectedItems());
+				else
+					p = new Pizza(modele.getDesignationProperty().getValue(),modele.getPrixProperty().getValue(),modele.getPizzaImage().getValue());
+			}
+			
+			this.getService().AddPizza(p);
+			update();
 		}
-		
-		this.getService().AddPizza(p);
-		update();
-		
 	}
 	
 	@Override

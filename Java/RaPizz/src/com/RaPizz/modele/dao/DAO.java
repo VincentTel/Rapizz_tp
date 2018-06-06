@@ -22,6 +22,7 @@ public class DAO {
 
 	public static InputStream ConvertImage(Image i)
 	{
+		if(i!=null) {
 		BufferedImage bImage = SwingFXUtils.fromFXImage(i, null);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		InputStream inputStream = null;
@@ -32,7 +33,9 @@ public class DAO {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		
+
 		return inputStream;
+		}
+		return null;
 	}
 }

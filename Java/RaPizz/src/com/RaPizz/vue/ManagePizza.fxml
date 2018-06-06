@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -9,11 +10,14 @@
    <left>
       <VBox prefHeight="384.0" prefWidth="195.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="AddPhoto_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="AddPhoto_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
             <TextField fx:id="Designation_TextField" promptText="Designation" />
             <TextField fx:id="Prix_TextField" promptText="Prix" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
-            <ListView fx:id="Ingredrients_ListView" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="Ingredrients_ListView" prefHeight="755.0" prefWidth="200.0"/>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="Add_Button" mnemonicParsing="false" text="Ajouter" />

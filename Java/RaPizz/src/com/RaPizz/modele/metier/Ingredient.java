@@ -10,6 +10,12 @@ public class Ingredient {
 			this.designation = designation;
 		}
 
+		public Ingredient(String designation)
+		{
+			this.designation = designation;
+		}
+
+
 		public long getID_Ingredient() {
 			return ID_Ingredient;
 		}

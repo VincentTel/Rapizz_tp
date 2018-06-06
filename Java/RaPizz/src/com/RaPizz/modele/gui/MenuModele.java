@@ -1,8 +1,6 @@
 package com.RaPizz.modele.gui;
 
 import com.RaPizz.modele.metier.Client;
-import com.RaPizz.modele.metier.Livreur;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
@@ -12,7 +10,6 @@ public class MenuModele {
 	private SimpleStringProperty FirstNameProperty;
 	private SimpleObjectProperty<Image> ProfilImageProperty;
 	private SimpleObjectProperty<Client> ClientProperty;
-	private SimpleObjectProperty<Livreur> LivreurProperty;
 	
 	public MenuModele ()
 	{
@@ -20,7 +17,6 @@ public class MenuModele {
 		FirstNameProperty = new SimpleStringProperty();
 		ProfilImageProperty = new SimpleObjectProperty<Image>();
 		ClientProperty= new SimpleObjectProperty<Client>();
-		LivreurProperty= new SimpleObjectProperty<Livreur>();
 	}
 
 
@@ -34,13 +30,8 @@ public class MenuModele {
 	public SimpleObjectProperty<Client> getClientProperty() {
 		return ClientProperty;
 	}
-
-
-	public SimpleObjectProperty<Livreur> getLivreurProperty() {
-		return LivreurProperty;
-	}
-
 	public SimpleStringProperty getFirstNameProperty() {
 		return FirstNameProperty;
 	}
+	
 }

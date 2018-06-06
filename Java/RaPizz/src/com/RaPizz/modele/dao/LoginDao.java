@@ -24,7 +24,7 @@ public class LoginDao extends DAO{
 	{
 		try {
 			
-			String queryPrepared= "Select numrue,rue,ville,codepostal,solde,pizzagrauite FROM client  where id_client = ? ";
+			String queryPrepared= "Select numrue,rue,ville,codepostal,solde,PIZZAGRATUITE FROM client LEFT JOIN personne on client.id_client=personne.id  where id_client = ? ";
 			PreparedStatement pr_stmt=connection.prepareStatement(queryPrepared);
 			pr_stmt.setString(1,pers.getID().toString());	
 				
@@ -37,11 +37,10 @@ public class LoginDao extends DAO{
 				{
 					Adresse a = new Adresse(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 					c = new Client(pers,a,rs.getFloat(5),rs.getInt(6));
-					
 				}
 				return c;
 			}
-			else
+			else 
 			{
 				queryPrepared= "Select salaire,dateembauche FROM livreur where id_livreur = ? ";
 				pr_stmt=connection.prepareStatement(queryPrepared);

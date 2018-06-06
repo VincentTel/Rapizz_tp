@@ -10,14 +10,20 @@ import com.RaPizz.controleur.AbstractControleur;
 import com.RaPizz.controleur.Mediateur;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+	 private static HostServices hostServices ;
+	 public static HostServices GetHostServices() {
+	        return hostServices ;
+	    }
+	   
 	private Pane mainParent;
 	//private Pane agendaParent;*
 	private AbstractControleur mainControleur;
@@ -26,9 +32,14 @@ public class Main extends Application {
 	private Stage primarystage;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+
+        hostServices = getHostServices();
+
+        
 		Properties prop = new Properties();
 		InputStream input = null;
 		
+		Font.loadFont(getClass().getResource("/com/RaPizz/images/pizzfont.TTF").toExternalForm(), 10);
 		
 		try {
 			input = getClass().getResourceAsStream("/com/RaPizz/vue/listVues.properties");

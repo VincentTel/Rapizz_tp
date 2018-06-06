@@ -10,7 +10,6 @@ import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.LoginModele;
 import com.RaPizz.modele.gui.MenuModele;
 import com.RaPizz.modele.metier.Client;
-import com.RaPizz.modele.metier.Livreur;
 import com.RaPizz.modele.metier.Personne;
 
 import javafx.scene.control.TextField;
@@ -72,7 +71,7 @@ public class LoginControleur extends AbstractControleur{
 		if(pers==null)
 		{
 			modele.getUserNameProperty().setValue("");
-			modele.getPasswordProperty().setValue("");
+	 		modele.getPasswordProperty().setValue("");
 		}else
 		{
 			MenuModele menu = (MenuModele) this.getModele(Contr.MENU);
@@ -82,23 +81,18 @@ public class LoginControleur extends AbstractControleur{
 			
 			Object result = this.getService().GetRole(pers);
 			Client c = null;
-			Livreur l = null;
+			
 			if(result.getClass().equals(Client.class))
+			{
 				c = (Client)result;
-			else if (result.getClass().equals(Livreur.class))
-				l = (Livreur)result;
+			}
 			
 			menu.getClientProperty().setValue(c);
-			menu.getLivreurProperty().setValue(l);
 			
 			if(c!=null)
-			{
-			this.showMenu();
-			this.showHeader();
-			}
-			else
-			this.showHeader();
+				this.showMenu();
 			
+			this.showHeader();
 			this.showHome();
 		}
 	}

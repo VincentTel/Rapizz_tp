@@ -27,6 +27,12 @@ public class Livreur extends Personne{
 		this.localDate = localDate;
 		
 	}
+	public Livreur(Long Id, String Prenom, String Nom, String UserName,	String Password, String Email, float salaire, Date localDate)
+	{
+		super(Id, Prenom, Nom, UserName, Password, Email, null);
+		this.salaire = salaire;
+		this.localDate = localDate;
+	}
 	public float getSalaire() {
 		return salaire;
 	}

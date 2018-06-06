@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -10,9 +11,17 @@
 
 <AnchorPane fx:id="menu_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.MenuControleur">
    <children>
-      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" minWidth="200" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="profil_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+          <ImageView fx:id="logo_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+               </VBox.margin>
+            </ImageView> 
+            <ImageView fx:id="profil_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
             <HBox alignment="CENTER">
                <children>
                   <Label fx:id="Firstname_Label" text="Nom" textFill="WHITE">
@@ -32,12 +41,42 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </HBox>
+            <HBox fx:id="solde_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
+               <children>
+                 
+               	<Label text="Solde: " textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="soldeAmount_Label" text="" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font>                     
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="15.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
             <HBox fx:id="home_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                <children>
-                  <ImageView fx:id="home_ImageView" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="home_Label" text="H" textFill="WHITE">
+                    <font>
+                        <Font size="48" />
+                     </font>
                      <HBox.margin>
                         <Insets left="10.0" />
-                     </HBox.margin></ImageView>
+                     </HBox.margin></Label>
                   <Label text="Home" textFill="WHITE">
                      <font>
                         <Font size="23.0" />
@@ -59,10 +98,13 @@
             </HBox>
             <HBox fx:id="pizza_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                <children>
-                  <ImageView fx:id="pizza_ImageView" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="pizza_Label" text="d" textFill="WHITE">
+                     <font>
+                        <Font size="48" />
+                     </font>
                      <HBox.margin>
                         <Insets left="10.0" />
-                     </HBox.margin></ImageView>
+                     </HBox.margin></Label>
                   <Label text="Pizza" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
@@ -84,11 +126,14 @@
             </HBox>
             <HBox fx:id="basket_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="265.0">
                <children>
-                  <ImageView fx:id="basket_ImageView" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="basket_Label" text="y" textFill="WHITE">
+                  <font>
+                        <Font size="35" />
+                     </font>
                      <HBox.margin>
                         <Insets left="10.0" />
-                     </HBox.margin></ImageView>
-                  <Label text="Basket" textFill="WHITE">
+                     </HBox.margin></Label>
+                  <Label text="Signout" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -104,11 +149,6 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <Label alignment="CENTER" text="Last orders:" textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <ListView fx:id="Order_Listview" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </children>

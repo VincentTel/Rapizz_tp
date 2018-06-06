@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -7,28 +9,53 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="Header_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.HeaderControleur">
-   <children>
-      <HBox fx:id="header_HBox" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+<AnchorPane fx:id="Header_AnchorPane" prefHeight="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.HeaderControleur">
+   <children>   
+<Label fx:id="tel_Label" text="tel: 07.64.62.59.59" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="20.0">
+   <font>
+      <Font size="38.0" />
+   </font>
+</Label>   
+    <HBox fx:id="header_HBox" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <ImageView fx:id="logo_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox alignment="CENTER" spacing="10.0">
+           
+            <HBox fx:id="info_HBox" alignment="CENTER" spacing="10.0">
                <children>
+            <ImageView fx:id="facebook_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+            <ImageView fx:id="twitter_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+            <ImageView fx:id="snap_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+            </children>
+               <HBox.margin>
+                  <Insets left="700.0" top="20.0" />
+               </HBox.margin>               
+            </HBox>
+           
+         </children>
+         
+      </HBox>
+       <HBox fx:id="menu_HBox" alignment="CENTER" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>               
+                  <Button fx:id="Home_button" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" text="Home" />
                   <Button fx:id="Ingredients_button" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" text="Manage Ingredients" />
                   <Button fx:id="Pizza_button" mnemonicParsing="false" text="Manage Pizza" />
                   <Button fx:id="Client_button" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Manage Clients" />
                   <Button fx:id="Livreur_button" layoutX="99.0" layoutY="10.0" mnemonicParsing="false" text="Manage Livreur" />
                   <Button fx:id="Liraison_button" layoutX="133.0" layoutY="10.0" mnemonicParsing="false" text="Manage Livraison" />
                   <Button fx:id="Vehicule_button" layoutX="419.0" layoutY="10.0" mnemonicParsing="false" text="Manage Vehicule" />
+                  <Button fx:id="Disconnect_button" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" text="Disconnect" />
                </children>
                <padding>
                   <Insets left="2.0" />
                </padding>
             </HBox>
-         </children>
-         <padding>
-            <Insets left="45.0" top="20.0" />
-         </padding>
-      </HBox>
    </children>
 </AnchorPane>

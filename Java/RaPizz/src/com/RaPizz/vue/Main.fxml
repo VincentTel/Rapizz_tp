@@ -5,4 +5,4 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<BorderPane fx:id="main_BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="500" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.MainControleur" />
+<BorderPane fx:id="main_BorderPane" prefHeight="800" prefWidth="500" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.MainControleur" />

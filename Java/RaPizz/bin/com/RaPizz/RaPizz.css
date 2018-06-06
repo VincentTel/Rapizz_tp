@@ -1,17 +1,40 @@
 /*
  * Background Views
  */
+ 
+@font-face {
+    src: url('com/RaPizz/images/pizzfont.ttf');
+}
+ 
+@font-face {
+    src: url('com/RaPizz/images/heydings_icons.ttf');
+}
+ 
 .root
 {
 	-fx-background-color:  white;
 }
 .LoginBG
 {
-	-fx-background-color: #c00a27;
+	-fx-background-color: #333e48;
 }
 .MenuBG
 {
+	-fx-background-color:  #333e48;
+}
+.HeaderBG
+{
+	-fx-background-image: url('images/banner.jpg')
+}
+.RedBG
+{
 	-fx-background-color:  #c00a27;
+}
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+   -fx-background-color: transparent;
 }
 .HomeBG{
     -fx-background-image: url("com/RaPizz/images/BGHome.png");
@@ -20,20 +43,33 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
-
 .MenuButton
 {
-	-fx-background-color:  #c00a27;
+	-fx-background-color:  #333e48;
 	-fx-text-fill: white;
     -fx-font-size: 25px;
 }
 
 .MenuButton:hover
 {
-	-fx-background-color:  #bc2d45;
+	-fx-background-color:  #666666;
 	
 }
 
 .table-column {
   -fx-alignment: CENTER;
+}
+
+ .Icons {
+    -fx-font-family: 'icomoon';
+}
+.PizzaBox
+{
+	
+ 	-fx-background-color: #333e48;
+    -fx-background-radius: 5.0;
+    -fx-padding: 5;
+}
+.IconsControl {
+    -fx-font-family: 'Heydings Icons';
 }

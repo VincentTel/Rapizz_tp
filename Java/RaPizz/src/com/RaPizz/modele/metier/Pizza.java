@@ -12,7 +12,8 @@ public class Pizza {
 		private String designation;
 		private float PrixBase;
 		private Image Photo;
-		private SimpleFloatProperty Prix;
+		private Taille size = null;
+		private SimpleFloatProperty prixTotal= new SimpleFloatProperty();
 		
 		public Pizza(long ID_Pizza, String designation,float PrixBase)
 		{
@@ -21,7 +22,6 @@ public class Pizza {
 			this.PrixBase = PrixBase;
 			this.composition = new ArrayList<>();
 			this.Photo = null;
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza(long ID_Pizza, String designation,float PrixBase, List<Ingredient> composition)
 		{
@@ -30,7 +30,6 @@ public class Pizza {
 			this.composition = composition;
 			this.PrixBase = PrixBase;
 			this.Photo = null;
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza(long ID_Pizza, String designation,float PrixBase, Image photo)
 		{
@@ -39,7 +38,6 @@ public class Pizza {
 			this.PrixBase = PrixBase;
 			this.Photo = photo;
 			this.composition = new ArrayList<>();
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza(long ID_Pizza, String designation,float PrixBase, Image photo, List<Ingredient> composition)
 		{
@@ -48,7 +46,6 @@ public class Pizza {
 			this.composition = composition;
 			this.PrixBase = PrixBase;
 			this.Photo = photo;
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza( String designation,float PrixBase)
 		{
@@ -57,7 +54,6 @@ public class Pizza {
 			this.PrixBase = PrixBase;
 			this.composition = new ArrayList<>();
 			this.Photo = null;
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza( String designation,float PrixBase, List<Ingredient> composition)
 		{
@@ -66,7 +62,6 @@ public class Pizza {
 			this.composition = composition;
 			this.PrixBase = PrixBase;
 			this.Photo = null;
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza(String designation,float PrixBase, Image photo)
 		{
@@ -75,7 +70,6 @@ public class Pizza {
 			this.PrixBase = PrixBase;
 			this.Photo = photo;
 			this.composition = new ArrayList<>();
-			this.Prix = new SimpleFloatProperty();
 		}
 		public Pizza( String designation,float PrixBase, Image photo, List<Ingredient> composition)
 		{
@@ -84,7 +78,17 @@ public class Pizza {
 			this.composition = composition;
 			this.PrixBase = PrixBase;
 			this.Photo = photo;
-			this.Prix = new SimpleFloatProperty();
+		}
+		public Pizza(Pizza p)
+		{
+			this.ID_Pizza = p.getID_Pizza();
+			this.designation = p.getDesignation();
+			this.composition = p.getComposition();
+			this.PrixBase = p.getPrixBase();
+			this.Photo = p.getPhoto();
+			this.size = p.getSize();
+			this.prixTotal = p.getPrix();
+			
 		}
 		public List<Ingredient> getComposition() {
 			return composition;
@@ -115,13 +119,20 @@ public class Pizza {
 		}
 		public void setPrixBase(float prixBase) {
 			PrixBase = prixBase;
+		}	
+		public SimpleFloatProperty getPrix() {						
+			return prixTotal;
+		}		
+		public Taille getSize() {
+			return size;
 		}
-	
-		public SimpleFloatProperty getPrix() {
-			return Prix;
-		}
-		public void setPrix(SimpleFloatProperty prix) {
-			Prix = prix;
+		public void setSize(Taille size) {
+			if(size!=null)
+				prixTotal.setValue( PrixBase * size.getPrixPonderation());		
+			else 
+				prixTotal.setValue(0);
+			
+			this.size = size;
 		}
 		
 		@Override
@@ -129,10 +140,10 @@ public class Pizza {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + (int) (ID_Pizza ^ (ID_Pizza >>> 32));
-			result = prime * result + ((Prix == null) ? 0 : Prix.hashCode());
 			result = prime * result + Float.floatToIntBits(PrixBase);
 			result = prime * result + ((composition == null) ? 0 : composition.hashCode());
 			result = prime * result + ((designation == null) ? 0 : designation.hashCode());
+			result = prime * result + ((size == null) ? 0 : size.hashCode());
 			return result;
 		}
 		@Override
@@ -146,11 +157,6 @@ public class Pizza {
 			Pizza other = (Pizza) obj;
 			if (ID_Pizza != other.ID_Pizza)
 				return false;
-			if (Prix == null) {
-				if (other.Prix != null)
-					return false;
-			} else if (!Prix.equals(other.Prix))
-				return false;
 			if (Float.floatToIntBits(PrixBase) != Float.floatToIntBits(other.PrixBase))
 				return false;
 			if (composition == null) {
@@ -163,7 +169,15 @@ public class Pizza {
 					return false;
 			} else if (!designation.equals(other.designation))
 				return false;
+			if (size == null) {
+				if (other.size != null)
+					return false;
+			} else if (!size.equals(other.size))
+				return false;
 			return true;
 		}
+	
+	
+		
 		
 }

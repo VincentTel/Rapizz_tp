@@ -42,6 +42,11 @@ public abstract class AbstractControleur {
 		return mediateur.getService();
 	}
 	
+
+	protected OrderPizzaControleur getOderPizzaControleur(){
+		return (OrderPizzaControleur)mediateur.getControleur(Contr.ORDERPIZZA);
+	}
+	
 	
 	private MainControleur getMainControleur(){
 		return (MainControleur)mediateur.getControleur(Contr.MAIN);
@@ -54,6 +59,9 @@ public abstract class AbstractControleur {
 	protected void showLogin(){
 		mediateur.getControleur(Contr.LOGIN).update();
 		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.LOGIN).getPane());
+		getMainControleur().getMainBorderPane().setLeft(null);
+		getMainControleur().getMainBorderPane().setTop(null);
+		((OrderPizzaControleur)mediateur.getControleur(Contr.ORDERPIZZA)).ReInitializeData();
 	}	
 	
 	protected void showSignUp(){
@@ -79,5 +87,29 @@ public abstract class AbstractControleur {
 	protected void showOrderPizza(){
 		mediateur.getControleur(Contr.ORDERPIZZA).update();
 		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.ORDERPIZZA).getPane());
-	}		
+	}	
+	protected void showProfil(){
+		mediateur.getControleur(Contr.PROFIL).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.PROFIL).getPane());
+	}	
+	protected void showManageClient(){
+		mediateur.getControleur(Contr.MANAGECLIENT).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGECLIENT).getPane());
+	}	
+	protected void showManageLivreur(){
+		mediateur.getControleur(Contr.MANAGELIVREUR).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGELIVREUR).getPane());
+	}	
+	protected void showManageCommande(){
+		mediateur.getControleur(Contr.MANAGECOMMANDE).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGECOMMANDE).getPane());
+	}	
+	protected void showManageIngredient(){
+		mediateur.getControleur(Contr.MANAGEINGREDIENT).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGEINGREDIENT).getPane());
+	}	
+	protected void showManageVehicule(){
+		mediateur.getControleur(Contr.MANAGEVEHICULE).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGEVEHICULE).getPane());
+	}	
 }

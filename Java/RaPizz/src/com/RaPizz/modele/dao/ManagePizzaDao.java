@@ -146,8 +146,7 @@ public class ManagePizzaDao  extends DAO{
 						img = new Image("com/RaPizz/images/profile-icon.png");
 					
 				Pizza piz = new Pizza(rs.getLong(1),rs.getString(2),rs.getLong(3),img);
-				result.add(piz);	
-				
+				result.add(piz);
 			}
 			
 			if(!result.isEmpty())

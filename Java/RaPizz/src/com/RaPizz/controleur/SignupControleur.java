@@ -1,6 +1,12 @@
 package com.RaPizz.controleur;
 
+import java.io.File;
+
 import com.RaPizz.controleur.Mediateur.Contr;
+import com.RaPizz.modele.gui.SignupModele;
+import com.RaPizz.modele.metier.Adresse;
+import com.RaPizz.modele.metier.Client;
+import com.RaPizz.modele.metier.Personne;
 
 import javafx.fxml.FXML;
 
@@ -10,6 +16,8 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class SignupControleur extends AbstractControleur {
@@ -38,19 +46,41 @@ public class SignupControleur extends AbstractControleur {
 	@FXML
 	private Button Register_Button;
 	
+	private SignupModele modele;
+	
 	public SignupControleur() {
-		super(Contr.SIGNUP);		
+		super(Contr.SIGNUP);
 	}
 
 	@FXML
 	private void initialize() {
 		
+		modele = (SignupModele)this.getModele(Contr.SIGNUP);
+		Profil_ImageView.setOnMouseClicked(x -> {
+	          FileChooser fileChooser = new FileChooser();	 
+			  File file = fileChooser.showOpenDialog(this.getPrimaryScene());
+            if (file != null) {
+          	  Image i = new Image(file.toURI().toString());            	  
+          	  modele.getClientImageProperty().setValue(i);
+            }
+		});
+		Register_Button.setOnAction(evt -> add());
+		Signup_AnchorPane.getStyleClass().add("LoginBG");
 		update();
     }
 	
+	private void add() {
+		
+		Adresse adr = new Adresse(Number_TextField.getText(),Street_TextField.getText(),City_TextField.getText(),Zip_TextField.getText());
+		Client client = new Client(new Personne(0L,FirstName_TextField.getText(),LastName_TextField.getText(),Username_TextField.getText(),Password_TextField.getText(),Email_TextField.getText(),Profil_ImageView.getImage()),adr,0,1);
+		this.getService().AddClient(client);
+		this.showLogin();		
+	}
+	
 	@Override
 	public void update() {
-
+		if(modele.getClientImageProperty()!=null)
+			Profil_ImageView.imageProperty().bindBidirectional(modele.getClientImageProperty());
 	}
 
 	@Override
