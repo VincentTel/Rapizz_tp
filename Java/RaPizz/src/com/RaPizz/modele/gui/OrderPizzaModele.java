@@ -13,6 +13,12 @@ public class OrderPizzaModele {
 		ListPizza = new SimpleListProperty<OderItemTemplate>();
 		Total = new SimpleFloatProperty();		
 	}
+	public void modeleInit()
+	{
+		ListPizza.setValue(null);
+		Total.setValue(0);
+	
+	}
 
 	public SimpleListProperty<OderItemTemplate> getListPizza() {
 		return ListPizza;

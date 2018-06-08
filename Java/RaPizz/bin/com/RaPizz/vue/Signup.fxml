@@ -7,61 +7,42 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="Signup_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.SignupControleur" >
+<AnchorPane fx:id="Signup_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.SignupControleur">
    <children>
-    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <children>
             <ImageView fx:id="Profil_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
+               
             </ImageView>
             <TextField fx:id="Username_TextField" alignment="CENTER" maxWidth="200.0" promptText="Username">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+              
             </TextField>
             <TextField fx:id="Password_TextField" alignment="CENTER" maxWidth="200.0" promptText="Password">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+               
             </TextField>
             <TextField fx:id="LastName_TextField" alignment="CENTER" maxWidth="200.0" promptText="Last Name">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+              
             </TextField>
             <TextField fx:id="FirstName_TextField" alignment="CENTER" maxWidth="200.0" promptText="First Name">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+               
             </TextField>
             <TextField fx:id="Email_TextField" alignment="CENTER" maxWidth="200.0" promptText="Email">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+              
             </TextField>
             <TextField fx:id="Number_TextField" alignment="CENTER" maxWidth="200.0" promptText="Number">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+               
             </TextField>
             <TextField fx:id="Street_TextField" alignment="CENTER" maxWidth="200.0" promptText="Street">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+              
             </TextField>
             <TextField fx:id="City_TextField" alignment="CENTER" maxWidth="200.0" promptText="City">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+               
             </TextField>
             <TextField fx:id="Zip_TextField" alignment="CENTER" maxWidth="200.0" promptText="Zip">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
+               
             </TextField>
             <Button fx:id="Register_Button" mnemonicParsing="false" text="Register" />
+              <Button fx:id="Cancel_Button" mnemonicParsing="false" text="Cancel" />
          </children>
       </VBox>
    </children>

@@ -13,12 +13,19 @@ public class MenuModele {
 	
 	public MenuModele ()
 	{
-		LastNameProperty = new SimpleStringProperty();
-		FirstNameProperty = new SimpleStringProperty();
-		ProfilImageProperty = new SimpleObjectProperty<Image>();
-		ClientProperty= new SimpleObjectProperty<Client>();
+		LastNameProperty = new SimpleStringProperty("");
+		FirstNameProperty = new SimpleStringProperty("");
+		ProfilImageProperty = new SimpleObjectProperty<Image>(null);
+		ClientProperty= new SimpleObjectProperty<Client>(null);
 	}
-
+	public void modeleInit()
+	{
+		LastNameProperty.setValue("");
+		LastNameProperty.setValue("");
+		ProfilImageProperty.setValue(null);
+		ClientProperty.setValue(null);
+		
+	}
 
 	public SimpleStringProperty getLastNameProperty() {
 		return LastNameProperty;

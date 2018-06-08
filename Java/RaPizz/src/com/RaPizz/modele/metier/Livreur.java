@@ -8,23 +8,28 @@ public class Livreur extends Personne{
 
 	private float salaire;
 	private Date localDate;
+	private int retard;
 	
 	public Livreur(Personne p, float salaire,Date localDate)
 	{
 		super(p);
 		this.salaire=salaire;
 		this.localDate = localDate;
+		this.retard = 0;
 	}
 	
 	public Livreur(Long Id, String Prenom,String Nom, String UserName,String  Password,String Email, Image Photo)
 	{
 		super(Id, Prenom,Nom,UserName,Password,Email,Photo);
+		this.retard = 0;
 	}
 	public Livreur(Long Id, String Prenom,String Nom, String UserName,String  Password,String Email, Image Photo, float salaire,Date localDate)
 	{
 		super(Id, Prenom,Nom,UserName,Password,Email,Photo);
 		this.salaire=salaire;
 		this.localDate = localDate;
+
+		this.retard = 0;
 		
 	}
 	public Livreur(Long Id, String Prenom, String Nom, String UserName,	String Password, String Email, float salaire, Date localDate)
@@ -32,6 +37,8 @@ public class Livreur extends Personne{
 		super(Id, Prenom, Nom, UserName, Password, Email, null);
 		this.salaire = salaire;
 		this.localDate = localDate;
+
+		this.retard = 0;
 	}
 	public float getSalaire() {
 		return salaire;
@@ -44,6 +51,19 @@ public class Livreur extends Personne{
 	}
 	public void setLocalDate(Date localDate) {
 		this.localDate = localDate;
+	}
+
+	public int getRetard() {
+		return retard;
+	}
+
+	public void setRetard(int retard) {
+		this.retard = retard;
+	}
+
+	@Override
+	public String toString() {
+		return this.getPrenom()+ " " + this.getNom();
 	}
 
 	@Override

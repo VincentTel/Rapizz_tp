@@ -6,6 +6,8 @@ import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.ManageClient;
 import com.RaPizz.modele.metier.Client;
 import com.RaPizz.modele.metier.Ingredient;
+
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +23,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -92,9 +93,9 @@ public class ManageClientControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Client, Float> Solde_TableColumn;
 	@FXML
-	private TableColumn<Client, HBox> Action_TableColumn;
+	private TableColumn<Client, Client> Action_TableColumn;
 	@FXML
-	private TableColumn<Client, HBox> ActionUpdate_TableColumn;
+	private TableColumn<Client, Client> ActionUpdate_TableColumn;
 
 	private ManageClient modele;
 
@@ -108,6 +109,7 @@ public class ManageClientControleur extends AbstractControleur
 	{
 		modele = (ManageClient) this.getModele(Contr.MANAGECLIENT);
 
+		ManageClient_BorderPane.getStyleClass().add("MenuBG");
 		/* Grid part */
 		Prenom_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -153,13 +155,21 @@ public class ManageClientControleur extends AbstractControleur
 				.setCellValueFactory(cellData ->
 						cellData.getValue().getSolde().asObject());
 
-		/*Photo_TableColumn
-				.setCellValueFactory(cellData -> new SimpleObjectProperty<>(
-						cellData.getValue()));*/
-
+		Photo_TableColumn
+				.setCellValueFactory(cellData -> new SimpleObjectProperty<Client>(
+						cellData.getValue()));
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Client>(
+				cellData.getValue()));
+		ActionUpdate_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Client>(
+				cellData.getValue()));
+		
+		
 		Photo_TableColumn.setCellFactory(cellData ->
 		{
 			final ImageView imageview = new ImageView();
+	        imageview.setFitHeight(150); 
+	        imageview.setFitWidth(150);
 			TableCell<Client, Client> cell = new TableCell<Client, Client>()
 			{
 				@Override
@@ -215,21 +225,24 @@ public class ManageClientControleur extends AbstractControleur
 		Solde_TextField.textProperty().bindBidirectional(
 				modele.getSoldeProperty(), new NumberStringConverter());
 
-		Callback<TableColumn<Client, HBox>, TableCell<Client, HBox>> actionDelCellFactory = new Callback<TableColumn<Client, HBox>, TableCell<Client, HBox>>()
+		Callback<TableColumn<Client, Client>, TableCell<Client, Client>> actionDelCellFactory = new Callback<TableColumn<Client, Client>, TableCell<Client, Client>>()
 		{
-			public TableCell<Client, HBox> call(TableColumn<Client, HBox> p)
+			public TableCell<Client, Client> call(TableColumn<Client, Client> p)
 			{
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Client, HBox> cell = new TableCell<Client, HBox>()
+				
+				TableCell<Client, Client> cell = new TableCell<Client, Client>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Client item, boolean empty)
 					{
-						super.updateItem(hb, empty);
-						if(!empty)
+						super.updateItem(item, empty);
+						if(item != null)
 							setGraphic(delImg);
+						else
+							setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -248,21 +261,24 @@ public class ManageClientControleur extends AbstractControleur
 			}
 		};
 		Action_TableColumn.setCellFactory(actionDelCellFactory);
-		Callback<TableColumn<Client, HBox>, TableCell<Client, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Client, HBox>, TableCell<Client, HBox>>()
+		Callback<TableColumn<Client, Client>, TableCell<Client, Client>> actionUpdateCellFactory = new Callback<TableColumn<Client, Client>, TableCell<Client, Client>>()
 		{
-			public TableCell<Client, HBox> call(TableColumn<Client, HBox> p)
+			public TableCell<Client, Client> call(TableColumn<Client, Client> p)
 			{
 				Label upImg = new Label("C");
 				upImg.setTextFill(Color.GREEN);
-				upImg.getStyleClass().add("Icons");	
-				TableCell<Client, HBox> cell = new TableCell<Client, HBox>()
+				upImg.getStyleClass().add("Icons");
+				
+				TableCell<Client, Client> cell = new TableCell<Client, Client>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Client item, boolean empty)
 					{
-						super.updateItem(hb, empty);
-						if(!empty)
+						super.updateItem(item, empty);
+						if(item != null)
 							setGraphic(upImg);
+						else 
+							setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -283,8 +299,11 @@ public class ManageClientControleur extends AbstractControleur
 		};
 		ActionUpdate_TableColumn.setCellFactory(actionUpdateCellFactory);
 		Add_Button.setOnAction(x -> add());
+		Add_Button.getStyleClass().add("ValidButton");
 		Update_Button.setOnAction(x -> Upd());
+		Update_Button.getStyleClass().add("UpdateButton");
 		Cancel_Button.setOnAction(x -> HideUpdateButton());
+		Cancel_Button.getStyleClass().add("CancelButton");
 		HideUpdateButton();
 	}
 

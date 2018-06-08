@@ -72,6 +72,12 @@ public class OrderPizzaControleur extends AbstractControleur{
 	private void initialize() {
 		modele = (OrderPizzaModele)this.getModele(Contr.ORDERPIZZA);
 
+		Pizza_GridPane = new GridPane();
+		Pizza_GridPane.getStyleClass().add("RedBG");
+		Pizza_GridPane.setHgap(10); 
+		Pizza_GridPane.setVgap(10);
+		Pizza_GridPane.setPadding(new Insets(10,80,10,0));
+		Pizza_ScrollPane.setContent(Pizza_GridPane);
 		Order_HBox.getStyleClass().add("RedBG");
 		OrderClient_AnchorPane.getStyleClass().add("RedBG");
 		Commande_ListView.getStyleClass().add("RedBG");
@@ -79,6 +85,7 @@ public class OrderPizzaControleur extends AbstractControleur{
 		Commande_ListView.itemsProperty().bind(modele.getListPizza());		
 		Total_Label.textProperty().bindBidirectional(modele.getTotal(),new NumberStringConverter());
 		Valide_Button.setOnAction(x->ValidePanier());
+		Valide_Button.getStyleClass().add("ValidButton");
 		Valide_Button.setDisable(true);
 		listOrder = new ArrayList<OderItemTemplate>();
 		update();
@@ -87,9 +94,9 @@ public class OrderPizzaControleur extends AbstractControleur{
 	
 	@Override
 	public void update() {
-		Pizza_GridPane = new GridPane();
-		
+		Pizza_GridPane.getChildren().clear();
 		List<Pizza> listPizz = this.getService().getAllPizzaManage();
+
 		int columnNumber = 6;
 		if(listPizz.size()>0) 
 		{
@@ -102,7 +109,6 @@ public class OrderPizzaControleur extends AbstractControleur{
 				hb.setPrefWidth(150);
 				hb.setAlignment(Pos.CENTER);
 				hb.getStyleClass().add("PizzaBox");
-
 				hb.setSpacing(5);
 				ImageView img = new ImageView(p.getPhoto());
 				Label titre = new Label(p.getDesignation());
@@ -136,7 +142,7 @@ public class OrderPizzaControleur extends AbstractControleur{
 					final String value = "Add " + p.getPrix().getValue() +"€";
 				    return value ;
 				}, p.getPrix()));
-				
+				add.getStyleClass().add("ValidButton");
 				add.setOnAction(x-> AddPanier(new Pizza(p)));
 				
 				hb.getChildren().add(titre);
@@ -161,13 +167,6 @@ public class OrderPizzaControleur extends AbstractControleur{
 			}	
 			
 		}
-		
-
-		Pizza_GridPane.getStyleClass().add("RedBG");
-		Pizza_GridPane.setHgap(10); 
-		Pizza_GridPane.setVgap(10);
-		Pizza_GridPane.setPadding(new Insets(10,80,10,0));
-		Pizza_ScrollPane.setContent(Pizza_GridPane);
 	}
 	
 	public void AddPanier(Pizza p)

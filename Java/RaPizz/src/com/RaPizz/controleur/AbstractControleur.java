@@ -57,11 +57,13 @@ public abstract class AbstractControleur {
 	public abstract Pane getPane();
 	
 	protected void showLogin(){
+		mediateur.Init();
 		mediateur.getControleur(Contr.LOGIN).update();
 		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.LOGIN).getPane());
 		getMainControleur().getMainBorderPane().setLeft(null);
 		getMainControleur().getMainBorderPane().setTop(null);
 		((OrderPizzaControleur)mediateur.getControleur(Contr.ORDERPIZZA)).ReInitializeData();
+		
 	}	
 	
 	protected void showSignUp(){

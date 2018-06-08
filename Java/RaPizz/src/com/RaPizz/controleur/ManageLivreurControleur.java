@@ -24,7 +24,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.TableView;
@@ -78,9 +77,13 @@ public class ManageLivreurControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Livreur, LocalDate> DateEmbauche_TableColumn;
 	@FXML
-	private TableColumn<Livreur, HBox> Action_TableColumn;
+	private TableColumn<Livreur, Livreur> Action_TableColumn;
 	@FXML
-	private TableColumn<Livreur, HBox> ActionUpdate_TableColumn;
+	private TableColumn<Livreur, Livreur> ActionUpdate_TableColumn;
+	@FXML
+	private TableColumn<Livreur, Integer> Retard_TableColumn;
+	@FXML
+	private TextField Retard_TextField;
 
 	private ManageLivreur modele;
 
@@ -89,13 +92,11 @@ public class ManageLivreurControleur extends AbstractControleur
 		super(Contr.MANAGELIVREUR);
 	}
 
-	@SuppressWarnings(
-	{ "unchecked", "rawtypes" })
 	@FXML
 	private void initialize()
 	{
 		modele = (ManageLivreur) this.getModele(Contr.MANAGELIVREUR);
-
+		ManageLivreur_BorderPane.getStyleClass().add("MenuBG");
 		/* Grid part */
 		Prenom_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -124,19 +125,29 @@ public class ManageLivreurControleur extends AbstractControleur
 				.setCellValueFactory(cellData -> new SimpleObjectProperty<LocalDate>(
 						cellData.getValue().getLocalDate().toLocalDate()));
 		Photo_TableColumn
-				.setCellValueFactory(cellData -> new SimpleObjectProperty(
+				.setCellValueFactory(cellData -> new SimpleObjectProperty<Livreur>(
 						cellData.getValue()));
-
+		Retard_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Integer>(
+				cellData.getValue().getRetard()));
+		
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Livreur>(
+				cellData.getValue()));
+		ActionUpdate_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Livreur>(
+				cellData.getValue()));
+		
 		Photo_TableColumn
 				.setCellFactory(cellData ->
 				{
 					final ImageView imageview = new ImageView();
+			        imageview.setFitHeight(150); 
+			        imageview.setFitWidth(150);
 					TableCell<Livreur, Livreur> cell = new TableCell<Livreur, Livreur>()
 					{
 						@Override
 						public void updateItem(Livreur item, boolean empty)
 						{
-							if (item != null)
+							 if(item != null)
 							{
 								imageview.setImage(item.getPhoto());
 							}
@@ -177,22 +188,27 @@ public class ManageLivreurControleur extends AbstractControleur
 		DateEmbauche_DatePicker.valueProperty().bindBidirectional(
 				modele.getDateEmbaucheProperty());
 		Salaire_TextField.textProperty().bindBidirectional(
-				modele.getSalaireProperty(), new NumberStringConverter());
-
-		Callback<TableColumn<Livreur, HBox>, TableCell<Livreur, HBox>> actionDelCellFactory = new Callback<TableColumn<Livreur, HBox>, TableCell<Livreur, HBox>>()
+				modele.getSalaireProperty(), new NumberStringConverter());		
+		Retard_TextField.textProperty().bindBidirectional(
+				modele.getRetardProperty(), new NumberStringConverter());
+		
+		Callback<TableColumn<Livreur, Livreur>, TableCell<Livreur, Livreur>> actionDelCellFactory = new Callback<TableColumn<Livreur, Livreur>, TableCell<Livreur, Livreur>>()
 		{
-			public TableCell<Livreur, HBox> call(TableColumn<Livreur, HBox> p)
+			public TableCell<Livreur, Livreur> call(TableColumn<Livreur, Livreur> p)
 			{
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Livreur, HBox> cell = new TableCell<Livreur, HBox>()
+				TableCell<Livreur, Livreur> cell = new TableCell<Livreur, Livreur>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Livreur hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(delImg);
+						 if(hb != null)
+							 setGraphic(delImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -211,20 +227,23 @@ public class ManageLivreurControleur extends AbstractControleur
 			}
 		};
 		Action_TableColumn.setCellFactory(actionDelCellFactory);
-		Callback<TableColumn<Livreur, HBox>, TableCell<Livreur, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Livreur, HBox>, TableCell<Livreur, HBox>>()
+		Callback<TableColumn<Livreur, Livreur>, TableCell<Livreur, Livreur>> actionUpdateCellFactory = new Callback<TableColumn<Livreur, Livreur>, TableCell<Livreur, Livreur>>()
 		{
-			public TableCell<Livreur, HBox> call(TableColumn<Livreur, HBox> p)
+			public TableCell<Livreur, Livreur> call(TableColumn<Livreur, Livreur> p)
 			{
 				Label upImg = new Label("C");
 				upImg.setTextFill(Color.GREEN);
 				upImg.getStyleClass().add("Icons");	
-				TableCell<Livreur, HBox> cell = new TableCell<Livreur, HBox>()
+				TableCell<Livreur, Livreur> cell = new TableCell<Livreur, Livreur>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Livreur hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(upImg);
+						 if(hb != null)
+							 setGraphic(upImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -245,8 +264,11 @@ public class ManageLivreurControleur extends AbstractControleur
 		};
 		ActionUpdate_TableColumn.setCellFactory(actionUpdateCellFactory);
 		Add_Button.setOnAction(x -> add());
+		Add_Button.getStyleClass().add("ValidButton");
 		Update_Button.setOnAction(x -> Upd());
+		Update_Button.getStyleClass().add("UpdateButton");
 		Cancel_Button.setOnAction(x -> HideUpdateButton());
+		Cancel_Button.getStyleClass().add("CancelButton");
 		HideUpdateButton();
 	}
 
@@ -265,6 +287,7 @@ public class ManageLivreurControleur extends AbstractControleur
 		modele.getEmailProperty().setValue(l.getEmail());
 		modele.getSalaireProperty().setValue(l.getSalaire());
 		modele.getDateEmbaucheProperty().set(l.getLocalDate().toLocalDate());
+		modele.getRetardProperty().setValue(l.getRetard());
 	}
 
 	private void HideUpdateButton()
@@ -287,6 +310,7 @@ public class ManageLivreurControleur extends AbstractControleur
 							.getEmailProperty().getValue(), modele
 							.getSalaireProperty().getValue(),
 					Date.valueOf(modele.getDateEmbaucheProperty().getValue()));
+			l.setRetard(modele.getRetardProperty().getValue());
 		}
 		else
 		{
@@ -298,6 +322,8 @@ public class ManageLivreurControleur extends AbstractControleur
 							.getLivreurImage().getValue(), modele
 							.getSalaireProperty().getValue(),
 					Date.valueOf(modele.getDateEmbaucheProperty().getValue()));
+
+			l.setRetard(modele.getRetardProperty().getValue());
 		}
 		this.getService().UpdateLivreur(l);
 		HideUpdateButton();

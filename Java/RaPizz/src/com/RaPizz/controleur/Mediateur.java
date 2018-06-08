@@ -3,7 +3,6 @@ package com.RaPizz.controleur;
 import java.util.EnumMap;
 import java.util.Map;
 
-import com.RaPizz.modele.gui.HomeModele;
 import com.RaPizz.modele.gui.LoginModele;
 import com.RaPizz.modele.gui.ManageClient;
 import com.RaPizz.modele.gui.ManageIngredient;
@@ -28,7 +27,6 @@ public class Mediateur {
 	private LoginModele loginModele;
 	private MenuModele menuModele;
 	private OrderPizzaModele orderPizzaModele;
-	private HomeModele homeModele;
 	private ManagePizza managePizza;
 	private ManageLivreur manageLivreur;
 	private ManageClient manageCliente;
@@ -36,19 +34,30 @@ public class Mediateur {
 	private ManageIngredient manageIngredient;
 	private SignupModele signupModele;
 	private Mediateur() {
-		service = new Service();	
+		service = new Service();
+
 		loginModele = new LoginModele();
 		signupModele = new SignupModele();
 		menuModele = new MenuModele();
 		orderPizzaModele = new OrderPizzaModele();
-		homeModele = new HomeModele();
 		managePizza = new ManagePizza();
 		manageCliente = new ManageClient();
 		manageLivreur = new ManageLivreur();
 		manageVehicule = new ManageVehicule();
-		manageIngredient = new ManageIngredient();
-		
-		
+		manageIngredient = new ManageIngredient();	
+	}
+	
+	public void Init()
+	{
+		loginModele.modeleInit();
+		signupModele.modeleInit();
+		menuModele.modeleInit();
+		orderPizzaModele.modeleInit();
+		managePizza.modeleInit();
+		manageCliente.modeleInit();
+		manageLivreur.modeleInit();
+		manageVehicule.modeleInit();
+		manageIngredient.modeleInit();		
 	}
 	
 	public static Mediateur getInstance(Contr contr, AbstractControleur controleur) {
@@ -81,7 +90,7 @@ public class Mediateur {
 		case PROFIL:
 			return null;
 		case HOME:
-			return homeModele;
+			return null;
 		case MANAGEPIZZA:
 			return managePizza;
 		case ORDERPIZZA:

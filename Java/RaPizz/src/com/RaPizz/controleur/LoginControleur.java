@@ -61,7 +61,9 @@ public class LoginControleur extends AbstractControleur{
 	        }
 	    });
 		Signup_Button.setOnAction(x-> showSignUp());
+		Signup_Button.getStyleClass().add("UpdateButton");
 		Connect_Button.setOnAction(x-> connect());
+		Connect_Button.getStyleClass().add("ValidButton");
 		update();
     }
 	

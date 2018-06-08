@@ -30,7 +30,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -66,9 +65,9 @@ public class ManagePizzaControleur extends AbstractControleur {
 	@FXML
 	private TableColumn<Pizza,String> Ingredients_TableColumn;
 	@FXML
-	private TableColumn<Pizza,HBox> Action_TableColumn;
+	private TableColumn<Pizza,Pizza> Action_TableColumn;
 	@FXML
-	private TableColumn<Pizza,HBox> ActionUpdate_TableColumn;
+	private TableColumn<Pizza,Pizza> ActionUpdate_TableColumn;
 	
 	private ManagePizza modele;
 	
@@ -80,11 +79,17 @@ public class ManagePizzaControleur extends AbstractControleur {
 	private void initialize() {
 		
 		modele =(ManagePizza)this.getModele(Contr.MANAGEPIZZA);
-		
+		ManagePizza_BorderPane.getStyleClass().add("MenuBG");
 		/*Grid part*/
 		Designation_TableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDesignation()) );
 
 		Prix_TableColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPrixBase()) );
+		
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Pizza>(
+				cellData.getValue()));
+		ActionUpdate_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Pizza>(
+				cellData.getValue()));
 		
 		Ingredients_TableColumn.setCellValueFactory(
 				  ( TableColumn.CellDataFeatures<Pizza, String> i ) ->
@@ -100,10 +105,12 @@ public class ManagePizzaControleur extends AbstractControleur {
 		Photo_TableColumn.setCellValueFactory(cellData ->  new SimpleObjectProperty<Pizza>( cellData.getValue() ));
 		Photo_TableColumn.setCellFactory(cellData -> {
 	        final ImageView imageview = new ImageView();
+	        imageview.setFitHeight(150); 
+	        imageview.setFitWidth(150);
 	        TableCell<Pizza, Pizza> cell = new TableCell<Pizza, Pizza>() {
 	            @Override
 	            public void updateItem(Pizza item, boolean empty) {
-	                if (item != null) {  
+	            	 if(item != null) {  
 	                    imageview.setImage(item.getPhoto());
 	                }else {
 	                	imageview.setImage(null);
@@ -142,17 +149,20 @@ public class ManagePizzaControleur extends AbstractControleur {
 		    }
 		}); 
 		
-		Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>> actionDelCellFactory = new Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>>()
+		Callback<TableColumn<Pizza, Pizza>,TableCell<Pizza, Pizza>> actionDelCellFactory = new Callback<TableColumn<Pizza, Pizza>,TableCell<Pizza, Pizza>>()
 		{
-			public TableCell<Pizza, HBox> call(TableColumn<Pizza, HBox> p) {
+			public TableCell<Pizza, Pizza> call(TableColumn<Pizza, Pizza> p) {
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Pizza, HBox> cell = new TableCell<Pizza, HBox>() {
+				TableCell<Pizza, Pizza> cell = new TableCell<Pizza, Pizza>() {
 						                				@Override
-						                				public void updateItem(HBox hb, boolean empty) {
-								                            super.updateItem(hb, empty);	
-								                          	setGraphic(delImg);
+						                				public void updateItem(Pizza hb, boolean empty) {
+								                            super.updateItem(hb, empty);
+								                            if(hb != null)
+								                            	setGraphic(delImg);
+								                            else
+								                            	setGraphic(null);
 						                				}
 				};	
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -167,17 +177,20 @@ public class ManagePizzaControleur extends AbstractControleur {
 			}
 		};
 		Action_TableColumn.setCellFactory(actionDelCellFactory);
-		Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Pizza, HBox>,TableCell<Pizza, HBox>>()
+		Callback<TableColumn<Pizza, Pizza>,TableCell<Pizza, Pizza>> actionUpdateCellFactory = new Callback<TableColumn<Pizza, Pizza>,TableCell<Pizza, Pizza>>()
 		{
-			public TableCell<Pizza, HBox> call(TableColumn<Pizza, HBox> p) {
+			public TableCell<Pizza, Pizza> call(TableColumn<Pizza, Pizza> p) {
 				Label upImg = new Label("C");
 				upImg.setTextFill(Color.GREEN);
 				upImg.getStyleClass().add("Icons");	
-				TableCell<Pizza, HBox> cell = new TableCell<Pizza, HBox>() {
+				TableCell<Pizza, Pizza> cell = new TableCell<Pizza, Pizza>() {
 						                				@Override
-						                				public void updateItem(HBox hb, boolean empty) {
-								                            super.updateItem(hb, empty);	
-								                          	setGraphic(upImg);
+						                				public void updateItem(Pizza hb, boolean empty) {
+								                            super.updateItem(hb, empty);
+								                            if(hb != null)
+								                            	setGraphic(upImg);
+								                            else
+								                            	setGraphic(null);
 						                				}
 				};	
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -193,8 +206,11 @@ public class ManagePizzaControleur extends AbstractControleur {
 		};
 		ActionUpdate_TableColumn.setCellFactory(actionUpdateCellFactory);
 		Add_Button.setOnAction(x-> add());
+		Add_Button.getStyleClass().add("ValidButton");
 		Update_Button.setOnAction(x->Upd());
+		Update_Button.getStyleClass().add("UpdateButton");
 		Cancel_Button.setOnAction(x->HideUpdateButton());
+		Cancel_Button.getStyleClass().add("CancelButton");
 		HideUpdateButton();
     }
 

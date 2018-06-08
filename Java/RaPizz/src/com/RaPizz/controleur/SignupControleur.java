@@ -45,7 +45,8 @@ public class SignupControleur extends AbstractControleur {
 	private TextField Zip_TextField;
 	@FXML
 	private Button Register_Button;
-	
+	@FXML
+	private Button Cancel_Button;
 	private SignupModele modele;
 	
 	public SignupControleur() {
@@ -66,6 +67,9 @@ public class SignupControleur extends AbstractControleur {
 		});
 		Register_Button.setOnAction(evt -> add());
 		Signup_AnchorPane.getStyleClass().add("LoginBG");
+		Register_Button.getStyleClass().add("ValidButton");
+		Cancel_Button.getStyleClass().add("CancelButton");
+		Cancel_Button.setOnAction(x->this.showLogin());
 		update();
     }
 	

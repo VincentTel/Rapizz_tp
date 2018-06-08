@@ -46,4 +46,52 @@ public class Vehicule {
 		this.Type = inType;
 	}
 
+	@Override
+	public String toString() {
+		return Type+ ": "+ Immat +", "+ Marque + ", " + Modele   ;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Immat == null) ? 0 : Immat.hashCode());
+		result = prime * result + ((Marque == null) ? 0 : Marque.hashCode());
+		result = prime * result + ((Modele == null) ? 0 : Modele.hashCode());
+		result = prime * result + ((Type == null) ? 0 : Type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicule other = (Vehicule) obj;
+		if (Immat == null) {
+			if (other.Immat != null)
+				return false;
+		} else if (!Immat.equals(other.Immat))
+			return false;
+		if (Marque == null) {
+			if (other.Marque != null)
+				return false;
+		} else if (!Marque.equals(other.Marque))
+			return false;
+		if (Modele == null) {
+			if (other.Modele != null)
+				return false;
+		} else if (!Modele.equals(other.Modele))
+			return false;
+		if (Type == null) {
+			if (other.Type != null)
+				return false;
+		} else if (!Type.equals(other.Type))
+			return false;
+		return true;
+	}
+
 }

@@ -96,12 +96,18 @@ public class Service {
 	{
 		return manageLivreurDao.getAllLivreurManage();
 	}
-
+	public List<Commande> getAllOrderDelivery()
+	{
+		return manageCommandeDao.getAllOrderDelivery();
+	}
 	public List<Commande> getAllCommandeManage()
 	{
 		return manageCommandeDao.getAllCommandeManage();
 	}
-	
+	public void UpdateCommande(Commande c)
+	{
+		manageCommandeDao.UpdateCommande(c);
+	}
 	public List<Taille> getAllTaille()
 	{
 		return orderPizzaDao.getAllTaille();

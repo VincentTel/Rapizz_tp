@@ -1,13 +1,13 @@
 package com.RaPizz.modele.metier;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Commande
 {
 	private long ID_Commande;
 	private float prixTotal;
-	private Date dateCommande;
-	private Date dateLivraison;
+	private Timestamp dateCommande;
+	private Timestamp dateLivraison;
 	private Livreur livreur;
 	private Client client;
 	private Vehicule vehicule;
@@ -32,22 +32,22 @@ public class Commande
 		this.prixTotal = prixTotal;
 	}
 
-	public Date getDateCommande()
+	public Timestamp getDateCommande()
 	{
 		return this.dateCommande;
 	}
 
-	public void setDateCommande(Date dateCommande)
+	public void setDateCommande(Timestamp dateCommande)
 	{
 		this.dateCommande = dateCommande;
 	}
 
-	public Date getDateLivraison()
+	public Timestamp getDateLivraison()
 	{
 		return this.dateLivraison;
 	}
 
-	public void setDateLivraison(Date dateLivraison)
+	public void setDateLivraison(Timestamp dateLivraison)
 	{
 		this.dateLivraison = dateLivraison;
 	}
@@ -82,7 +82,7 @@ public class Commande
 		this.vehicule = vehicule;
 	}
 
-	public Commande(long ID, float prix, Date dCommande, Date dLivraison, Livreur l, Client c, Vehicule v)
+	public Commande(long ID, float prix, Timestamp dCommande, Timestamp dLivraison, Livreur l, Client c, Vehicule v)
 	{
 		this.ID_Commande = ID;
 		this.prixTotal = prix;
@@ -92,7 +92,7 @@ public class Commande
 		this.client = c;
 		this.vehicule = v;
 	}
-	public Commande(long ID, float prix, Date dCommande, Date dLivraison)
+	public Commande(long ID, float prix, Timestamp dCommande, Timestamp dLivraison)
 	{
 		this.ID_Commande = ID;
 		this.prixTotal = prix;

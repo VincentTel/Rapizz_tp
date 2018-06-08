@@ -53,6 +53,7 @@ public class ProfilControleur extends AbstractControleur{
 	@FXML
 	private void initialize() {
 		modele = (MenuModele)this.getModele(Contr.MENU);
+		Profil_AnchorPane.getStyleClass().add("RedBG");
 		update();
     }
 	
@@ -71,11 +72,12 @@ public class ProfilControleur extends AbstractControleur{
 		Street_TextField.setText(modele.getClientProperty().getValue().getAdr().getRue());
 		City_TextField.setText(modele.getClientProperty().getValue().getAdr().getVille());
 		Zip_TextField.setText(modele.getClientProperty().getValue().getAdr().getCp());
-		Solde_TextField.setText(String.format("Solde: %f", modele.getClientProperty().getValue().getSolde().getValue()));
+		Solde_TextField.setText(String.format("%f", modele.getClientProperty().getValue().getSolde().getValue()));
 		PizzaGratuite_TextField.setText(String.format("Pizza commandé: %d",modele.getClientProperty().getValue().getPizzaGratuite().getValue()));
 		}
 		
 		Register_Button.setOnAction(x->save());
+		Register_Button.getStyleClass().add("ValidButton");
 	}
 	private boolean isNumeric(String str) {
 	    if (str == null) {
@@ -104,8 +106,7 @@ public class ProfilControleur extends AbstractControleur{
 				!Zip_TextField.getText().equals("")&&
 				!Solde_TextField.getText().equals("")&&
 				!PizzaGratuite_TextField.getText().equals("")&&				
-				isNumeric(Solde_TextField.getText())&&
-				Float.parseFloat(Solde_TextField.getText()) >= modele.getClientProperty().getValue().getSolde().getValue())
+				isNumeric(Solde_TextField.getText()))
 		{
 			modele.getProfilImageProperty().setValue(Profil_ImageView.getImage());
 			modele.getClientProperty().getValue().setPhoto(Profil_ImageView.getImage());
@@ -121,7 +122,7 @@ public class ProfilControleur extends AbstractControleur{
 			modele.getClientProperty().getValue().getAdr().setVille(City_TextField.getText());
 			modele.getClientProperty().getValue().getAdr().setVille(Zip_TextField.getText());
 			modele.getClientProperty().getValue().setSolde(Float.parseFloat(Solde_TextField.getText()));
-			modele.getClientProperty().getValue().setPizzaGratuite(Integer.parseInt(PizzaGratuite_TextField.getText()));	
+			this.getService().UpdateClient(modele.getClientProperty().getValue());
 		}
 		
 		

@@ -1,6 +1,6 @@
 package com.RaPizz.controleur;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.metier.Commande;
@@ -13,7 +13,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
@@ -32,9 +31,9 @@ public class ManageCommandeControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Commande, Number> PrixTotal_TableColumn;
 	@FXML
-	private TableColumn<Commande, LocalDate> DateCommande_TableColumn;
+	private TableColumn<Commande, Timestamp> DateCommande_TableColumn;
 	@FXML
-	private TableColumn<Commande, LocalDate> DateLivraison_TableColumn;
+	private TableColumn<Commande, Timestamp> DateLivraison_TableColumn;
 	@FXML
 	private TableColumn<Commande, Long> IdClient_TableColumn;
 	@FXML
@@ -42,7 +41,7 @@ public class ManageCommandeControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Commande, String> ImmatVehicule_TableColumn;
 	@FXML
-	private TableColumn<Commande, HBox> Action_TableColumn;
+	private TableColumn<Commande, Commande> Action_TableColumn;
 
 	public ManageCommandeControleur()
 	{
@@ -53,31 +52,41 @@ public class ManageCommandeControleur extends AbstractControleur
 	private void initialize()
 	{
 		/* Grid part */
+
+		ManageCommande_BorderPane.getStyleClass().add("MenuBG");
+		
 		PrixTotal_TableColumn
 				.setCellValueFactory(cellData -> new SimpleFloatProperty(
 						cellData.getValue().getPrixTotal()));
 		DateCommande_TableColumn
-				.setCellValueFactory(cellData -> new SimpleObjectProperty<LocalDate>(
-						cellData.getValue().getDateCommande().toLocalDate()));
+				.setCellValueFactory(cellData -> new SimpleObjectProperty<Timestamp>(
+						cellData.getValue().getDateCommande()));
 		DateLivraison_TableColumn
-				.setCellValueFactory(cellData -> cellData.getValue().getDateLivraison() != null? new SimpleObjectProperty<LocalDate>(
-						cellData.getValue().getDateLivraison().toLocalDate()) : new SimpleObjectProperty<LocalDate>());
+				.setCellValueFactory(cellData -> cellData.getValue().getDateLivraison() != null? new SimpleObjectProperty<Timestamp>(
+						cellData.getValue().getDateLivraison()) : new SimpleObjectProperty<Timestamp>());
 
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Commande>(
+				cellData.getValue()));
+		
 
-		Callback<TableColumn<Commande, HBox>, TableCell<Commande, HBox>> actionDelCellFactory = new Callback<TableColumn<Commande, HBox>, TableCell<Commande, HBox>>()
+		Callback<TableColumn<Commande, Commande>, TableCell<Commande, Commande>> actionDelCellFactory = new Callback<TableColumn<Commande, Commande>, TableCell<Commande, Commande>>()
 		{
-			public TableCell<Commande, HBox> call(TableColumn<Commande, HBox> p)
+			public TableCell<Commande, Commande> call(TableColumn<Commande, Commande> p)
 			{
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Commande, HBox> cell = new TableCell<Commande, HBox>()
+				TableCell<Commande, Commande> cell = new TableCell<Commande, Commande>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Commande hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(delImg);
+						 if(hb != null)
+							 setGraphic(delImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,

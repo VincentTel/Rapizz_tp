@@ -1,15 +1,7 @@
 /*
  * Background Views
  */
- 
-@font-face {
-    src: url('com/RaPizz/images/pizzfont.ttf');
-}
- 
-@font-face {
-    src: url('com/RaPizz/images/heydings_icons.ttf');
-}
- 
+
 .root
 {
 	-fx-background-color:  white;
@@ -43,6 +35,7 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
+
 .MenuButton
 {
 	-fx-background-color:  #333e48;
@@ -54,6 +47,37 @@
 {
 	-fx-background-color:  #666666;
 	
+}
+
+.ValidButton
+{
+	-fx-background-color:  #28a745;
+	-fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.ValidButton:hover
+{
+	-fx-background-color:  #20c997;
+}
+.UpdateButton
+{
+	-fx-background-color:  #6610f2;
+	-fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.UpdateButton:hover
+{
+	-fx-background-color:  #007bff;
+}
+.CancelButton
+{
+	-fx-background-color:  #dc3545;
+	-fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.CancelButton:hover
+{
+	-fx-background-color:  #e83e8c;
 }
 
 .table-column {
@@ -72,4 +96,129 @@
 }
 .IconsControl {
     -fx-font-family: 'Heydings Icons';
+}
+
+
+.BorderPane
+{
+	-fx-border-color: transparent;
+	-fx-border-width: 0;
+}
+
+.list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+.list-view {
+    -fx-background-color: transparent;  
+    -fx-border-color: white;
+	-fx-border-width: 0.5;  
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+.list-cell:odd {
+	
+    -fx-cell-hover-color: #0093ff;
+}
+
+.list-cell:filled:hover {
+	
+    -fx-cell-hover-color: #0093ff;
+    -fx-text-fill: white;
+}
+
+.choice-box 
+{
+  -fx-background-color: #333e48;
+  -fx-mark-color: white; 
+}
+
+.choice-box > .label 
+{ 	
+	-fx-text-fill: white;
+	-fx-font-family: "Trebuchet MS";
+}
+
+.choice-box .context-menu { -fx-background-color: #333e48; }
+.choice-box .menu-item:focused { -fx-background-color: #333e48; }
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+
+
+.table-view{
+   -fx-background-color: transparent;
+   -fx-background-insets: 0;
+   -fx-border-width: 0;
+   -fx-border-color: transparent;
+   -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+  -fx-background-color: transparent;
+  -fx-padding: 1em;
+}
+.corner {-fx-background-color: transparent;}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #333e48;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: #333e48;
+}
+
+.table-view .table-cell{
+	
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #83909e;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #aab5c1;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */  
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #64788c;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+    -fx-table-cell-border-color: transparent;
+}
+.table-view > .virtual-flow,
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: #333e48;
+    -fx-padding: 0em;
+}
+
+
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
 }

@@ -34,6 +34,22 @@ public class SignupModele {
 		clientImageProperty = new SimpleObjectProperty<Image>(new Image("com/RaPizz/images/click-icon.png"));
 		
 	}
+	
+	public void modeleInit()
+	{
+		ID_ClientProperty.setValue(null);
+		prenomProperty.setValue("");
+		nomProperty.setValue("");
+		emailProperty.setValue("");
+		userNameProperty.setValue("");
+		passwordProperty.setValue("");
+		numrueProperty.setValue("");
+		rueProperty.setValue("");
+		villeProperty.setValue("");
+		codePostalProperty.setValue("");
+		clientImageProperty.setValue(new Image("com/RaPizz/images/click-icon.png"));
+		
+	}
 
 	public SimpleStringProperty getNumrueProperty() {
 		return numrueProperty;

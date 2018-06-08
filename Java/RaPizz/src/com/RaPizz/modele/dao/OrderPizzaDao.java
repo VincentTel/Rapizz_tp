@@ -1,9 +1,11 @@
 package com.RaPizz.modele.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class OrderPizzaDao extends DAO{
 			String queryPrepared= "INSERT INTO `commande`(`PrixTotal`, `DateCommande`, `ID_Client`) VALUES (?, ?, ?)";
 			PreparedStatement pr_stmt = connection.prepareStatement(queryPrepared, Statement.RETURN_GENERATED_KEYS);
 			pr_stmt.setFloat(1, orderTotal);
-			pr_stmt.setDate(2,Date.valueOf(java.time.LocalDate.now()));
+			pr_stmt.setTimestamp(2,Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
 			pr_stmt.setLong(3,client.getID());
 			
 			if(pr_stmt.executeUpdate()>0)

@@ -4,6 +4,7 @@ import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.ManageIngredient;
 import com.RaPizz.modele.metier.Ingredient;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +17,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -39,9 +39,9 @@ public class ManageIngredientControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Ingredient, String> Designation_TableColumn;
 	@FXML
-	private TableColumn<Ingredient, HBox> Action_TableColumn;
+	private TableColumn<Ingredient, Ingredient> Action_TableColumn;
 	@FXML
-	private TableColumn<Ingredient, HBox> ActionUpdate_TableColumn;
+	private TableColumn<Ingredient, Ingredient> ActionUpdate_TableColumn;
 
 	private ManageIngredient modele;
 
@@ -54,7 +54,7 @@ public class ManageIngredientControleur extends AbstractControleur
 	private void initialize()
 	{
 		modele = (ManageIngredient) this.getModele(Contr.MANAGEINGREDIENT);
-
+		ManageIngredients_BorderPane.getStyleClass().add("MenuBG");
 		/* Grid part */
 		Designation_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -63,22 +63,30 @@ public class ManageIngredientControleur extends AbstractControleur
 		/* Adding part */
 		Designation_TextField.textProperty().bindBidirectional(
 				modele.getDesignationProperty());
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Ingredient>(
+				cellData.getValue()));
+		ActionUpdate_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Ingredient>(
+				cellData.getValue()));
 
-		Callback<TableColumn<Ingredient, HBox>, TableCell<Ingredient, HBox>> actionDelCellFactory = new Callback<TableColumn<Ingredient, HBox>, TableCell<Ingredient, HBox>>()
+		Callback<TableColumn<Ingredient, Ingredient>, TableCell<Ingredient, Ingredient>> actionDelCellFactory = new Callback<TableColumn<Ingredient, Ingredient>, TableCell<Ingredient, Ingredient>>()
 		{
-			public TableCell<Ingredient, HBox> call(
-					TableColumn<Ingredient, HBox> i)
+			public TableCell<Ingredient, Ingredient> call(
+					TableColumn<Ingredient, Ingredient> i)
 			{
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Ingredient, HBox> cell = new TableCell<Ingredient, HBox>()
+				TableCell<Ingredient, Ingredient> cell = new TableCell<Ingredient, Ingredient>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Ingredient hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(delImg);
+						 if(hb != null)
+							 setGraphic(delImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -100,21 +108,24 @@ public class ManageIngredientControleur extends AbstractControleur
 
 		Action_TableColumn.setCellFactory(actionDelCellFactory);
 
-		Callback<TableColumn<Ingredient, HBox>, TableCell<Ingredient, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Ingredient, HBox>, TableCell<Ingredient, HBox>>()
+		Callback<TableColumn<Ingredient, Ingredient>, TableCell<Ingredient, Ingredient>> actionUpdateCellFactory = new Callback<TableColumn<Ingredient, Ingredient>, TableCell<Ingredient, Ingredient>>()
 		{
-			public TableCell<Ingredient, HBox> call(
-					TableColumn<Ingredient, HBox> i)
+			public TableCell<Ingredient, Ingredient> call(
+					TableColumn<Ingredient, Ingredient> i)
 			{
 				Label upImg = new Label("C");
 				upImg.setTextFill(Color.GREEN);
 				upImg.getStyleClass().add("Icons");	
-				TableCell<Ingredient, HBox> cell = new TableCell<Ingredient, HBox>()
+				TableCell<Ingredient, Ingredient> cell = new TableCell<Ingredient, Ingredient>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Ingredient hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(upImg);
+						 if(hb != null)
+							 setGraphic(upImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -136,8 +147,11 @@ public class ManageIngredientControleur extends AbstractControleur
 
 		ActionUpdate_TableColumn.setCellFactory(actionUpdateCellFactory);
 		Add_Button.setOnAction(x -> add());
+		Add_Button.getStyleClass().add("ValidButton");
 		Update_Button.setOnAction(x -> Upd());
+		Update_Button.getStyleClass().add("UpdateButton");
 		Cancel_Button.setOnAction(x -> HideUpdateButton());
+		Cancel_Button.getStyleClass().add("CancelButton");
 		HideUpdateButton();
 	}
 

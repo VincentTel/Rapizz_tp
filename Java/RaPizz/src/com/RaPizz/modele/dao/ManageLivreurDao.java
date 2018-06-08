@@ -86,11 +86,12 @@ public class ManageLivreurDao extends DAO
 
 			if (pr_stmt.executeUpdate() > 0)
 			{
-				queryPrepared = "UPDATE Livreur set DateEmbauche = ?, Salaire = ? where ID_Livreur = ?";
+				queryPrepared = "UPDATE Livreur set DateEmbauche = ?, Salaire = ?, Retard = ? where ID_Livreur = ?";
 				pr_stmt = connection.prepareStatement(queryPrepared);
 				pr_stmt.setDate(1, l.getLocalDate());
 				pr_stmt.setFloat(2, l.getSalaire());
-				pr_stmt.setLong(3, l.getID());
+				pr_stmt.setLong(3, l.getRetard());
+				pr_stmt.setLong(4, l.getID());
 				pr_stmt.executeUpdate();
 			}
 		}
@@ -107,7 +108,7 @@ public class ManageLivreurDao extends DAO
 		try
 		{
 			String queryPrepared = "SELECT DateEmbauche, Salaire, Photo, ID, "
-					+ "Prenom, Nom, Username, Password, Email FROM `livreur` JOIN `personne`"
+					+ "Prenom, Nom, Username, Password, Email, Retard FROM `livreur` JOIN `personne`"
 					+ " where ID_Livreur = personne.ID";
 			PreparedStatement pr_stmt = connection
 					.prepareStatement(queryPrepared);
@@ -124,6 +125,7 @@ public class ManageLivreurDao extends DAO
 				Livreur l = new Livreur(rs.getLong(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8),
 						rs.getString(9), img, rs.getFloat(2), rs.getDate(1));
+				l.setRetard(rs.getInt(10));
 				result.add(l);
 			}
 		}

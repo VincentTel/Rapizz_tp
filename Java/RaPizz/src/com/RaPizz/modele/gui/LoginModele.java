@@ -13,6 +13,11 @@ public class LoginModele {
 		passwordProperty = new SimpleStringProperty();
 	}
 
+	public void modeleInit()
+	{
+		userNameProperty.setValue("");
+		passwordProperty.setValue("");
+	}
 	public SimpleStringProperty getUserNameProperty() {
 		return userNameProperty;
 	}

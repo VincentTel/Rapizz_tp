@@ -3,6 +3,7 @@ package com.RaPizz.modele.gui;
 import java.time.LocalDate;
 
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +20,8 @@ public class ManageLivreur
 	private SimpleStringProperty EmailProperty;
 	private SimpleObjectProperty<LocalDate> DateEmbaucheProperty;
 	private SimpleFloatProperty SalaireProperty;
-
+	private SimpleIntegerProperty retardProperty;
+	
 	public ManageLivreur()
 	{
 		LivreurImage = new SimpleObjectProperty<Image>(new Image(
@@ -32,6 +34,7 @@ public class ManageLivreur
 		DateEmbaucheProperty = new SimpleObjectProperty<LocalDate>();
 		SalaireProperty = new SimpleFloatProperty();
 		IdLivreurProperty = new SimpleLongProperty();
+		retardProperty= new SimpleIntegerProperty();
 	}
 
 	public void modeleInit()
@@ -45,6 +48,11 @@ public class ManageLivreur
 		DateEmbaucheProperty.set(null);
 		SalaireProperty.setValue(0);
 		IdLivreurProperty.setValue(null);
+		retardProperty.setValue(0);
+	}
+
+	public SimpleIntegerProperty getRetardProperty() {
+		return retardProperty;
 	}
 
 	public SimpleLongProperty getIdLivreurProperty()

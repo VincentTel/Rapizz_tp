@@ -92,6 +92,8 @@ public class MenuControleur extends AbstractControleur {
 	
 	@Override
 	public void update() {
+		modele = (MenuModele)this.getModele(Contr.MENU);
+
 		if(modele.getClientProperty().getValue() != null)
 			soldeAmount_Label.textProperty().bindBidirectional(modele.getClientProperty().getValue().getSolde(), new NumberStringConverter());
 

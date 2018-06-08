@@ -119,6 +119,9 @@
                   <TableColumn fx:id="Vehicule_TableColumn" prefWidth="75.0" text="Vehicule" />
                   <TableColumn fx:id="Valider_TableColumn" prefWidth="75.0" text="Valider" />
               </columns>
+              <columnResizePolicy>
+            	<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        	 </columnResizePolicy>
             </TableView>
          </children></AnchorPane>
    </children>

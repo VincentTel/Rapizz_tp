@@ -4,6 +4,7 @@ import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.ManageVehicule;
 import com.RaPizz.modele.metier.Vehicule;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -52,9 +52,9 @@ public class ManageVehiculeControleur extends AbstractControleur
 	@FXML
 	private TableColumn<Vehicule, String> Type_TableColumn;
 	@FXML
-	private TableColumn<Vehicule, HBox> Action_TableColumn;
+	private TableColumn<Vehicule, Vehicule> Action_TableColumn;
 	@FXML
-	private TableColumn<Vehicule, HBox> ActionUpdate_TableColumn;
+	private TableColumn<Vehicule, Vehicule> ActionUpdate_TableColumn;
 
 	private ManageVehicule modele;
 
@@ -67,7 +67,7 @@ public class ManageVehiculeControleur extends AbstractControleur
 	private void initialize()
 	{
 		modele = (ManageVehicule) this.getModele(Contr.MANAGEVEHICULE);
-
+		ManageVehicule_BorderPane.getStyleClass().add("MenuBG");
 		/* Grid part */
 		Immat_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -81,6 +81,12 @@ public class ManageVehiculeControleur extends AbstractControleur
 		Type_TableColumn
 				.setCellValueFactory(cellData -> new SimpleStringProperty(
 						cellData.getValue().getType()));
+		
+		Action_TableColumn
+		.setCellValueFactory(cellData -> new SimpleObjectProperty<Vehicule>(
+				cellData.getValue()));
+		ActionUpdate_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Vehicule>(
+				cellData.getValue()));
 
 		/* Adding part */
 		Immat_TextField.textProperty().bindBidirectional(
@@ -92,20 +98,23 @@ public class ManageVehiculeControleur extends AbstractControleur
 		Type_TextField.textProperty().bindBidirectional(
 				modele.getTypeProperty());
 
-		Callback<TableColumn<Vehicule, HBox>, TableCell<Vehicule, HBox>> actionDelCellFactory = new Callback<TableColumn<Vehicule, HBox>, TableCell<Vehicule, HBox>>()
+		Callback<TableColumn<Vehicule, Vehicule>, TableCell<Vehicule, Vehicule>> actionDelCellFactory = new Callback<TableColumn<Vehicule, Vehicule>, TableCell<Vehicule, Vehicule>>()
 		{
-			public TableCell<Vehicule, HBox> call(TableColumn<Vehicule, HBox> v)
+			public TableCell<Vehicule, Vehicule> call(TableColumn<Vehicule, Vehicule> v)
 			{
 				Label delImg = new Label("y");
 				delImg.setTextFill(Color.RED);
 				delImg.getStyleClass().add("Icons");
-				TableCell<Vehicule, HBox> cell = new TableCell<Vehicule, HBox>()
+				TableCell<Vehicule, Vehicule> cell = new TableCell<Vehicule, Vehicule>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Vehicule hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(delImg);
+						 if(hb != null)
+							 setGraphic(delImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -126,20 +135,23 @@ public class ManageVehiculeControleur extends AbstractControleur
 
 		Action_TableColumn.setCellFactory(actionDelCellFactory);
 
-		Callback<TableColumn<Vehicule, HBox>, TableCell<Vehicule, HBox>> actionUpdateCellFactory = new Callback<TableColumn<Vehicule, HBox>, TableCell<Vehicule, HBox>>()
+		Callback<TableColumn<Vehicule, Vehicule>, TableCell<Vehicule, Vehicule>> actionUpdateCellFactory = new Callback<TableColumn<Vehicule, Vehicule>, TableCell<Vehicule, Vehicule>>()
 		{
-			public TableCell<Vehicule, HBox> call(TableColumn<Vehicule, HBox> v)
+			public TableCell<Vehicule, Vehicule> call(TableColumn<Vehicule, Vehicule> v)
 			{
 				Label upImg = new Label("C");
 				upImg.setTextFill(Color.GREEN);
 				upImg.getStyleClass().add("Icons");	
-				TableCell<Vehicule, HBox> cell = new TableCell<Vehicule, HBox>()
+				TableCell<Vehicule, Vehicule> cell = new TableCell<Vehicule, Vehicule>()
 				{
 					@Override
-					public void updateItem(HBox hb, boolean empty)
+					public void updateItem(Vehicule hb, boolean empty)
 					{
 						super.updateItem(hb, empty);
-						setGraphic(upImg);
+						 if(hb != null)
+							 setGraphic(upImg);
+						 else
+							 setGraphic(null);
 					}
 				};
 				cell.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -161,8 +173,11 @@ public class ManageVehiculeControleur extends AbstractControleur
 
 		ActionUpdate_TableColumn.setCellFactory(actionUpdateCellFactory);
 		Add_Button.setOnAction(x -> add());
+		Add_Button.getStyleClass().add("ValidButton");
 		Update_Button.setOnAction(x -> Upd());
+		Update_Button.getStyleClass().add("UpdateButton");
 		Cancel_Button.setOnAction(x -> HideUpdateButton());
+		Cancel_Button.getStyleClass().add("CancelButton");
 		HideUpdateButton();
 	}
 

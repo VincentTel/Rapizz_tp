@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="Profil_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.ProfilControleur">
   <children>
-    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <children>
             <ImageView fx:id="Profil_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
@@ -70,7 +70,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-             <TextField fx:id="PizzaGratuite_TextField" alignment="CENTER" maxWidth="200.0" promptText="Pizza Commandé">
+             <TextField fx:id="PizzaGratuite_TextField" alignment="CENTER" editable="false" maxWidth="200.0" promptText="Pizza Commandé">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

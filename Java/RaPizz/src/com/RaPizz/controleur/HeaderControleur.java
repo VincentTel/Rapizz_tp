@@ -104,7 +104,6 @@ public class HeaderControleur extends AbstractControleur {
 			header_HBox.getChildren().add(menu_HBox);
 			if(header_HBox.getChildren().contains(info_HBox))
 				header_HBox.getChildren().remove(info_HBox);
-
 		}
 	}
 
