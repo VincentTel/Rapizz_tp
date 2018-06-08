@@ -10,12 +10,12 @@
    <left>
       <VBox prefHeight="384.0" prefWidth="195.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="Designation_TextField" promptText="Designation" />
-            <VBox prefHeight="334.0" spacing="7.0"  prefWidth="195.0">
+            <TextField fx:id="Designation_TextField" promptText="Designation" text="Désignation" />
+            <VBox prefHeight="334.0" prefWidth="195.0" spacing="7.0">
                <children>
-                  <Button fx:id="Add_Button"  maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" />
-                  <Button fx:id="Update_Button"  maxWidth="1.7976931348623157E308" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update" />
-                  <Button fx:id="Cancel_Button"   maxWidth="1.7976931348623157E308" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="10.0" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="Add_Button" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" />
+                  <Button fx:id="Update_Button" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Actualiser" />
+                  <Button fx:id="Cancel_Button" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler" />
                </children>
             </VBox>
          </children>
@@ -27,7 +27,7 @@
    <center>
       <TableView fx:id="Ingredients_TableView" prefHeight="390.0" prefWidth="387.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="Designation_TableColumn" text="Designation" />
+          <TableColumn fx:id="Designation_TableColumn" text="Désignation" />
             <TableColumn fx:id="Action_TableColumn" text="Action" />            
             <TableColumn fx:id="ActionUpdate_TableColumn" text="Action" />
         </columns> 

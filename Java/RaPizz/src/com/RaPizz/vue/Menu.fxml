@@ -13,7 +13,7 @@
    <children>
       <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-          <AnchorPane >
+          <AnchorPane>
                <children>
                   <VBox alignment="TOP_CENTER" minWidth="200" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -34,7 +34,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="Lastname_Label" layoutX="10.0" layoutY="10.0" text="Prenom" textFill="WHITE">
+                              <Label fx:id="Lastname_Label" layoutX="10.0" layoutY="10.0" text="Prénom" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -50,7 +50,7 @@
                         <HBox fx:id="solde_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                            <children>
                              
-                           	<Label text="Solde: " textFill="WHITE">
+                           	<Label text="Solde : " textFill="WHITE">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -76,7 +76,7 @@
                         </HBox>
                         <HBox fx:id="home_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                            <children>
-                              <Label fx:id="home_Label" text="H" textFill="WHITE">
+                              <Label fx:id="home_Label" text="A" textFill="WHITE">
                                 <font>
                                     <Font size="48" />
                                  </font>
@@ -84,7 +84,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Home" textFill="WHITE">
+                              <Label text="Accueil" textFill="WHITE">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -105,7 +105,7 @@
                         </HBox>
                         <HBox fx:id="pizza_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                            <children>
-                              <Label fx:id="pizza_Label" text="d" textFill="WHITE">
+                              <Label fx:id="pizza_Label" text="D" textFill="WHITE">
                                  <font>
                                     <Font size="48" />
                                  </font>
@@ -134,7 +134,7 @@
                         </HBox>
                         <HBox fx:id="basket_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="265.0">
                            <children>
-                              <Label fx:id="basket_Label" text="y" textFill="WHITE">
+                              <Label fx:id="basket_Label" text="Y" textFill="WHITE">
                               <font>
                                     <Font size="35" />
                                  </font>
@@ -142,7 +142,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Signout" textFill="WHITE">
+                              <Label text="Déconnexion" textFill="WHITE">
                                  <font>
                                     <Font size="25.0" />
                                  </font>

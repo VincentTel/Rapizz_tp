@@ -9,9 +9,9 @@
    <center>
       <TableView fx:id="Commande_TableView" prefHeight="390.0" prefWidth="387.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="PrixTotal_TableColumn"  text="Prix Total" />
-          <TableColumn fx:id="DateCommande_TableColumn" text="Date Commande" />
-            <TableColumn fx:id="DateLivraison_TableColumn"  text="Date Livraison" />
+          <TableColumn fx:id="PrixTotal_TableColumn" text="Prix total" />
+          <TableColumn fx:id="DateCommande_TableColumn" text="Date de commande" />
+            <TableColumn fx:id="DateLivraison_TableColumn" text="Date de livraison" />
             <TableColumn fx:id="Action_TableColumn" text="Action" />
         </columns> 
         <columnResizePolicy>

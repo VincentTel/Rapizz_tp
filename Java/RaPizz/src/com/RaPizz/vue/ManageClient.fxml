@@ -12,21 +12,21 @@
          <children>
             <ImageView fx:id="AddPhoto_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="Nom_TextField" promptText="Nom" />
-            <TextField fx:id="Prenom_TextField" promptText="Prenom" />
-            <TextField fx:id="Username_TextField" layoutX="10.0" layoutY="185.0" promptText="Username" />
-            <TextField fx:id="Password_TextField" layoutX="10.0" layoutY="210.0" promptText="Password" />
+            <TextField fx:id="Prenom_TextField" promptText="Prénom" />
+            <TextField fx:id="Username_TextField" layoutX="10.0" layoutY="185.0" promptText="Nom d'utilisateur" />
+            <TextField fx:id="Password_TextField" layoutX="10.0" layoutY="210.0" promptText="Mot de passe" />
             <TextField fx:id="Email_TextField" layoutX="10.0" layoutY="337.0" promptText="Email" />
-            <TextField fx:id="NumRue_TextField" layoutX="10.0" layoutY="160.0" promptText="NumRue" />
+            <TextField fx:id="NumRue_TextField" layoutX="10.0" layoutY="160.0" promptText="Numéro de rue" />
             <TextField fx:id="Rue_TextField" layoutX="10.0" layoutY="235.0" promptText="Rue" />
             <TextField fx:id="Ville_TextField" layoutX="10.0" layoutY="260.0" promptText="Ville" />
-            <TextField fx:id="CodePostal_TextField" layoutX="10.0" layoutY="210.0" promptText="Code Postal" />
+            <TextField fx:id="CodePostal_TextField" layoutX="10.0" layoutY="210.0" promptText="Code postal" />
             <TextField fx:id="Solde_TextField" layoutX="10.0" layoutY="185.0" promptText="Solde" />
-            <TextField fx:id="PizzaGratuite_TextField" layoutX="10.0" layoutY="410.0" promptText="PizzaGratuite" />
-            <VBox prefHeight="100.0"  spacing="7.0" prefWidth="200.0">
+            <TextField fx:id="PizzaGratuite_TextField" layoutX="10.0" layoutY="410.0" promptText="Pizza gratuite" />
+            <VBox prefHeight="100.0" prefWidth="200.0" spacing="7.0">
                <children>
                   <Button fx:id="Add_Button" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" />
-                  <Button fx:id="Update_Button"   maxWidth="1.7976931348623157E308" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update" />
-                  <Button fx:id="Cancel_Button"  maxWidth="1.7976931348623157E308" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="10.0" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="Update_Button" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Actualiser" />
+                  <Button fx:id="Cancel_Button" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuler" />
                </children>
             </VBox>
          </children>
@@ -39,17 +39,17 @@
       <TableView fx:id="Client_TableView" prefHeight="390.0" prefWidth="387.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="Photo_TableColumn" text="Photo" />
-          <TableColumn fx:id="Prenom_TableColumn" text="Prenom" />
+          <TableColumn fx:id="Prenom_TableColumn" text="Prénom" />
             <TableColumn fx:id="Nom_TableColumn" text="Nom" />
-            <TableColumn fx:id="Username_TableColumn" text="Username" />
-            <TableColumn fx:id="Password_TableColumn" text="Password" />
+            <TableColumn fx:id="Username_TableColumn" text="Nom d'utilisateur" />
+            <TableColumn fx:id="Password_TableColumn" text="Mot de passe" />
             <TableColumn fx:id="Email_TableColumn" text="Email" />
-            <TableColumn fx:id="NumRue_TableColumn" text="Num Rue" />
+            <TableColumn fx:id="NumRue_TableColumn" text="Numéro de rue" />
             <TableColumn fx:id="Rue_TableColumn" text="Rue" />
             <TableColumn fx:id="Ville_TableColumn" text="Ville" />
-            <TableColumn fx:id="CodePostal_TableColumn" text="Code Postal" />
+            <TableColumn fx:id="CodePostal_TableColumn" text="Code postal" />
             <TableColumn fx:id="Solde_TableColumn" text="Solde" />
-            <TableColumn fx:id="PizzaGratuite_TableColumn" text="Pizza Gratuite" />
+            <TableColumn fx:id="PizzaGratuite_TableColumn" text="Pizza gratuite" />
             <TableColumn fx:id="Action_TableColumn" text="Action" />            
             <TableColumn fx:id="ActionUpdate_TableColumn" text="Action" />
         </columns> 
