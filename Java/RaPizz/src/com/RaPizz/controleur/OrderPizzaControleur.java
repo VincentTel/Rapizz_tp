@@ -52,6 +52,8 @@ public class OrderPizzaControleur extends AbstractControleur{
 	private Button Valide_Button;
 	@FXML
 	private HBox Order_HBox;
+	@FXML
+	private VBox Order_VBox;
 	private List<OderItemTemplate> listOrder;
 	private GridPane Pizza_GridPane;
 	private OrderPizzaModele modele;
@@ -71,13 +73,7 @@ public class OrderPizzaControleur extends AbstractControleur{
 	@FXML
 	private void initialize() {
 		modele = (OrderPizzaModele)this.getModele(Contr.ORDERPIZZA);
-
-		Pizza_GridPane = new GridPane();
-		Pizza_GridPane.getStyleClass().add("RedBG");
-		Pizza_GridPane.setHgap(10); 
-		Pizza_GridPane.setVgap(10);
-		Pizza_GridPane.setPadding(new Insets(10,80,10,0));
-		Pizza_ScrollPane.setContent(Pizza_GridPane);
+		Order_VBox.getStyleClass().add("MenuBG");
 		Order_HBox.getStyleClass().add("RedBG");
 		OrderClient_AnchorPane.getStyleClass().add("RedBG");
 		Commande_ListView.getStyleClass().add("RedBG");
@@ -88,28 +84,39 @@ public class OrderPizzaControleur extends AbstractControleur{
 		Valide_Button.getStyleClass().add("ValidButton");
 		Valide_Button.setDisable(true);
 		listOrder = new ArrayList<OderItemTemplate>();
+		InitGridPane();
 		update();
     }
 	
+	private void InitGridPane()
+	{
+		Pizza_GridPane = new GridPane();
+		Pizza_GridPane.getStyleClass().add("RedBG");
+		Pizza_GridPane.setHgap(10); 
+		Pizza_GridPane.setVgap(10);
+		Pizza_GridPane.setPadding(new Insets(10,80,10,0));
+		Pizza_ScrollPane.setContent(Pizza_GridPane);
+	}
 	
 	@Override
 	public void update() {
-		Pizza_GridPane.getChildren().clear();
 		List<Pizza> listPizz = this.getService().getAllPizzaManage();
-
+	
 		int columnNumber = 6;
 		if(listPizz.size()>0) 
-		{
+		{   
+			InitGridPane();
 			int columnIndex = 0;
 			int rowIndex = 0;
 			for(Pizza p : listPizz)
 			{
 				AnchorPane item = new AnchorPane();
+				
 				VBox hb = new VBox();
 				hb.setPrefWidth(150);
 				hb.setAlignment(Pos.CENTER);
-				hb.getStyleClass().add("PizzaBox");
 				hb.setSpacing(5);
+				hb.getStyleClass().add("PizzaBox");
 				ImageView img = new ImageView(p.getPhoto());
 				Label titre = new Label(p.getDesignation());
 				titre.setTextFill(Color.WHITE);
@@ -149,12 +156,15 @@ public class OrderPizzaControleur extends AbstractControleur{
 				hb.getChildren().add(img);	
 				hb.getChildren().add(composition);
 				hb.getChildren().add(ch);
-				hb.getChildren().add(add);
 				
-				item.getChildren().add(hb);		
+				item.getChildren().addAll(hb,add);	
+
+				AnchorPane.setBottomAnchor(hb, 50.0);
+				AnchorPane.setBottomAnchor(add, 0.0);
+				AnchorPane.setLeftAnchor(add, 50.0);
 				
-				Pizza_GridPane.add(item,columnIndex,rowIndex);		
-				
+				Pizza_GridPane.add(item,columnIndex,rowIndex);	
+
 				if(columnIndex == columnNumber)
 				{
 					columnIndex = 0;
@@ -165,7 +175,6 @@ public class OrderPizzaControleur extends AbstractControleur{
 					columnIndex++;
 				}
 			}	
-			
 		}
 	}
 	
@@ -175,7 +184,6 @@ public class OrderPizzaControleur extends AbstractControleur{
 		OderItemTemplate doublon = null;
 		for(OderItemTemplate o : listOrder)
 		{
-			System.out.println(o.getPizza().getSize().getDesignation());
 			if(o.getPizza().equals(p))
 			{
 				Addable = false;
@@ -186,7 +194,7 @@ public class OrderPizzaControleur extends AbstractControleur{
 		if(Addable)
 		{
 			OderItemTemplate item = new OderItemTemplate(p);
-			item.getButton().setOnAction(x->DelPanier(item));		
+			item.getButton().setOnMouseClicked(x->DelPanier(item));		
 			listOrder.add(item);
 		}else
 		{			
@@ -200,12 +208,39 @@ public class OrderPizzaControleur extends AbstractControleur{
 	
 	private float CalcTotal()
 	{
-		float result = 0;
+		if(modele.getClient().getValue()!=null)
+		{
+		float result = 0;		
+		int nbpizza=0;
+		int nbPizzaClient = 0;
+		if(modele.getClient().getValue().getPizzaGratuite().getValue() !=null)
+			nbPizzaClient = modele.getClient().getValue().getPizzaGratuite().getValue();
 		
 		for(OderItemTemplate o : listOrder)
-			result += o.getPrix();
+			nbpizza += o.getQt();
+		
+		if(nbpizza + nbPizzaClient >= 10)
+		{
+			for(OderItemTemplate o : listOrder) {
+				for(int i=0 ; i<o.getQt();i++)
+				{
+					if(nbPizzaClient + 1 >=10)
+						nbPizzaClient = 0;
+					else
+					{
+						nbPizzaClient++;
+						result += o.getPizza().getPrix().getValue();
+					}	
+				}
+			}
+		}
+		else
+			for(OderItemTemplate o : listOrder)
+				result += o.getPrix();
 			
 		return result;
+		}
+		return 0;
 	}
 
 	private void DelPanier(OderItemTemplate item)

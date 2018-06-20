@@ -2,11 +2,15 @@ package com.RaPizz.controleur;
 
 import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.MenuModele;
+import com.RaPizz.modele.metier.Commande;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.AnchorPane;
@@ -43,6 +47,11 @@ public class ProfilControleur extends AbstractControleur{
 	private TextField PizzaGratuite_TextField;
 	@FXML
 	private Button Register_Button;
+	@FXML
+	private Label Commande_Label;
+	@FXML
+	private ListView<Commande> Commande_ListView;
+	
 	private MenuModele modele;
 	
 	public ProfilControleur() {
@@ -54,6 +63,15 @@ public class ProfilControleur extends AbstractControleur{
 	private void initialize() {
 		modele = (MenuModele)this.getModele(Contr.MENU);
 		Profil_AnchorPane.getStyleClass().add("RedBG");
+		Commande_ListView.setCellFactory(param -> new ListCell<Commande>() {
+		    @Override
+		    protected void updateItem(Commande item, boolean empty) {
+		        super.updateItem(item, empty);		        
+		        if ( !(empty || item == null))  {
+		            setText("Date Commande: "+item.getDateCommande() + " Date Livraison: "+item.getDateLivraison() + " Prix total: "+ item.getPrixTotal());
+		        }
+		    }
+		}); 
 		update();
     }
 	
@@ -62,18 +80,21 @@ public class ProfilControleur extends AbstractControleur{
 	public void update() {
 		if(modele.getClientProperty().getValue() != null)
 		{
-		Profil_ImageView.setImage(modele.getClientProperty().getValue().getPhoto());
-		Username_TextField.setText(modele.getClientProperty().getValue().getUserName());
-		Password_TextField.setText(modele.getClientProperty().getValue().getPassword());
-		LastName_TextField.setText(modele.getClientProperty().getValue().getNom());
-		FirstName_TextField.setText(modele.getClientProperty().getValue().getPrenom());
-		Email_TextField.setText(modele.getClientProperty().getValue().getEmail());
-		Number_TextField.setText(modele.getClientProperty().getValue().getAdr().getNumRue());
-		Street_TextField.setText(modele.getClientProperty().getValue().getAdr().getRue());
-		City_TextField.setText(modele.getClientProperty().getValue().getAdr().getVille());
-		Zip_TextField.setText(modele.getClientProperty().getValue().getAdr().getCp());
-		Solde_TextField.setText(String.format("%f", modele.getClientProperty().getValue().getSolde().getValue()));
-		PizzaGratuite_TextField.setText(String.format("Pizza commandé: %d",modele.getClientProperty().getValue().getPizzaGratuite().getValue()));
+			Profil_ImageView.setImage(modele.getClientProperty().getValue().getPhoto());
+			Username_TextField.setText(modele.getClientProperty().getValue().getUserName());
+			Password_TextField.setText(modele.getClientProperty().getValue().getPassword());
+			LastName_TextField.setText(modele.getClientProperty().getValue().getNom());
+			FirstName_TextField.setText(modele.getClientProperty().getValue().getPrenom());
+			Email_TextField.setText(modele.getClientProperty().getValue().getEmail());
+			Number_TextField.setText(modele.getClientProperty().getValue().getAdr().getNumRue());
+			Street_TextField.setText(modele.getClientProperty().getValue().getAdr().getRue());
+			City_TextField.setText(modele.getClientProperty().getValue().getAdr().getVille());
+			Zip_TextField.setText(modele.getClientProperty().getValue().getAdr().getCp());
+			Solde_TextField.setText(String.format("%f", modele.getClientProperty().getValue().getSolde().getValue()));
+			PizzaGratuite_TextField.setText(String.format("Pizza commandé: %d",modele.getClientProperty().getValue().getPizzaGratuite().getValue()));
+
+			Commande_ListView.getItems().setAll(FXCollections.observableArrayList(this.getService().getCommandeByIdClient(modele.getClientProperty().getValue().getID())));
+			Commande_Label.setText("Commande ("+Commande_ListView.getItems().size() +")");
 		}
 		
 		Register_Button.setOnAction(x->save());
@@ -114,7 +135,7 @@ public class ProfilControleur extends AbstractControleur{
 			modele.getClientProperty().getValue().setPassword(Password_TextField.getText());
 			modele.getLastNameProperty().setValue(LastName_TextField.getText());
 			modele.getClientProperty().getValue().setNom(LastName_TextField.getText());
-			modele.getLastNameProperty().setValue(FirstName_TextField.getText());
+			modele.getFirstNameProperty().setValue(FirstName_TextField.getText());
 			modele.getClientProperty().getValue().setPrenom(FirstName_TextField.getText());
 			modele.getClientProperty().getValue().setEmail(Email_TextField.getText());
 			modele.getClientProperty().getValue().getAdr().setNumRue(Number_TextField.getText());

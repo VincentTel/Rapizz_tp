@@ -113,5 +113,9 @@ public abstract class AbstractControleur {
 	protected void showManageVehicule(){
 		mediateur.getControleur(Contr.MANAGEVEHICULE).update();
 		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.MANAGEVEHICULE).getPane());
+	}		
+	protected void showStats(){
+		mediateur.getControleur(Contr.STATS).update();
+		getMainControleur().getMainBorderPane().setCenter(mediateur.getControleur(Contr.STATS).getPane());
 	}	
 }

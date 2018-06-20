@@ -10,7 +10,7 @@
    <children>
       <HBox fx:id="Order_HBox" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-            <VBox alignment="TOP_CENTER" minWidth="200" spacing="5.0">
+            <VBox fx:id="Order_VBox"  alignment="TOP_CENTER" minWidth="200" spacing="5.0">
                <children>
                   <Label alignment="CENTER" text="Panier" textFill="WHITE" />
                   <HBox>

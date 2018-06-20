@@ -6,12 +6,22 @@ public class Vehicule {
 	private String Marque;
 	private String Modele;
 	private String Type;
+	private String NbUtilisation;
 	
 	public Vehicule (String inImmat, String inMarque, String inModele, String inType) {
 			this.Immat = inImmat;
 			this.Marque = inMarque;
 			this.Modele = inModele;
-			this.Type = inType;
+			this.Type = inType;	
+			this.NbUtilisation = "0";
+	}
+
+	public String getNbUtilisation() {
+		return NbUtilisation;
+	}
+
+	public void setNbUtilisation(String nbUtilisation) {
+		NbUtilisation = nbUtilisation;
 	}
 
 	public String getMarque() {
@@ -47,8 +57,8 @@ public class Vehicule {
 	}
 
 	@Override
-	public String toString() {
-		return Type+ ": "+ Immat +", "+ Marque + ", " + Modele   ;
+	public String toString() {	
+		return Type+ ": "+ Immat +", "+ Marque + ", " + Modele  ;
 	}
 
 	@Override

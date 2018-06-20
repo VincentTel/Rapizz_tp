@@ -12,6 +12,7 @@ import com.RaPizz.modele.gui.ManageVehicule;
 import com.RaPizz.modele.gui.MenuModele;
 import com.RaPizz.modele.gui.OrderPizzaModele;
 import com.RaPizz.modele.gui.SignupModele;
+import com.RaPizz.modele.gui.StatsModele;
 import com.RaPizz.modele.service.Service;
 
 
@@ -19,7 +20,7 @@ import com.RaPizz.modele.service.Service;
 // pattern Singleton
 public class Mediateur {
 
-	public enum Contr {MAIN,LOGIN,SIGNUP,MENU,HOME,HEADER,MANAGEPIZZA,MANAGECLIENT,ORDERPIZZA,PROFIL,MANAGELIVREUR,MANAGECOMMANDE,MANAGEVEHICULE,MANAGEINGREDIENT}
+	public enum Contr {MAIN,LOGIN,SIGNUP,MENU,HOME,HEADER,MANAGEPIZZA,MANAGECLIENT,ORDERPIZZA,PROFIL,MANAGELIVREUR,MANAGECOMMANDE,MANAGEVEHICULE,MANAGEINGREDIENT,STATS}
 	
 	private Service service;
 	private static Mediateur instance = null;
@@ -33,6 +34,7 @@ public class Mediateur {
 	private ManageVehicule manageVehicule;
 	private ManageIngredient manageIngredient;
 	private SignupModele signupModele;
+	private StatsModele statsModele;
 	private Mediateur() {
 		service = new Service();
 
@@ -44,7 +46,8 @@ public class Mediateur {
 		manageCliente = new ManageClient();
 		manageLivreur = new ManageLivreur();
 		manageVehicule = new ManageVehicule();
-		manageIngredient = new ManageIngredient();	
+		manageIngredient = new ManageIngredient();
+		statsModele = new StatsModele();
 	}
 	
 	public void Init()
@@ -57,7 +60,9 @@ public class Mediateur {
 		manageCliente.modeleInit();
 		manageLivreur.modeleInit();
 		manageVehicule.modeleInit();
-		manageIngredient.modeleInit();		
+		manageIngredient.modeleInit();	
+		statsModele.modeleInit();
+		
 	}
 	
 	public static Mediateur getInstance(Contr contr, AbstractControleur controleur) {
@@ -105,6 +110,8 @@ public class Mediateur {
 			return manageVehicule;
 		case MANAGEINGREDIENT:
 			return manageIngredient;
+		case STATS:
+			return statsModele;
 		default:
 			return null;			
 		}		

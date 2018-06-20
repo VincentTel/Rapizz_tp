@@ -64,6 +64,13 @@ public class Client extends Personne {
 		this.solde.setValue(solde);
 		this.pizzaGratuite.setValue(pizzaGratuite);
 	}
+	
+	
+	@Override
+	public String toString() {
+		return this.getNom() + ' '+ this.getPrenom();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

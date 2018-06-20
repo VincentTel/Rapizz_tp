@@ -76,7 +76,7 @@
                         </HBox>
                         <HBox fx:id="home_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                            <children>
-                              <Label fx:id="home_Label" text="A" textFill="WHITE">
+                              <Label fx:id="home_Label" text="H" textFill="WHITE">
                                 <font>
                                     <Font size="48" />
                                  </font>
@@ -105,7 +105,7 @@
                         </HBox>
                         <HBox fx:id="pizza_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="177.0">
                            <children>
-                              <Label fx:id="pizza_Label" text="D" textFill="WHITE">
+                              <Label fx:id="pizza_Label" text="A" textFill="WHITE">
                                  <font>
                                     <Font size="48" />
                                  </font>
@@ -134,7 +134,7 @@
                         </HBox>
                         <HBox fx:id="basket_HBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="265.0">
                            <children>
-                              <Label fx:id="basket_Label" text="Y" textFill="WHITE">
+                              <Label fx:id="basket_Label" text="y" textFill="WHITE">
                               <font>
                                     <Font size="35" />
                                  </font>

@@ -27,7 +27,17 @@ public class Personne{
 		this.Email = p.Email;
 		this.Photo = p.Photo;
 	}
-
+	public Personne(Long Id, String Prenom,String Nom)
+	{
+		this.Id = Id;
+		this.Prenom = Prenom;
+		this.Nom = Nom;
+		this.Username = "";
+		this.Password = "";
+		this.Email = "";
+		this.Photo = null;
+	}
+	
 	public Personne(Long Id, String Prenom,String Nom, String UserName,String  Password,String Email, Image Photo)
 	{
 		this.Id = Id;

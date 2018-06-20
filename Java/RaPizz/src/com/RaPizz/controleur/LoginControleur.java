@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import com.RaPizz.controleur.Mediateur.Contr;
 import com.RaPizz.modele.gui.LoginModele;
 import com.RaPizz.modele.gui.MenuModele;
+import com.RaPizz.modele.gui.OrderPizzaModele;
 import com.RaPizz.modele.metier.Client;
 import com.RaPizz.modele.metier.Personne;
 
@@ -77,6 +78,8 @@ public class LoginControleur extends AbstractControleur{
 		}else
 		{
 			MenuModele menu = (MenuModele) this.getModele(Contr.MENU);
+
+			OrderPizzaModele ordermodele = (OrderPizzaModele) this.getModele(Contr.ORDERPIZZA);
 			menu.getFirstNameProperty().setValue(pers.getPrenom());
 			menu.getLastNameProperty().setValue(pers.getNom());
 			menu.getProfilImageProperty().setValue(pers.getPhoto());
@@ -90,7 +93,7 @@ public class LoginControleur extends AbstractControleur{
 			}
 			
 			menu.getClientProperty().setValue(c);
-			
+			ordermodele.getClient().setValue(c);
 			if(c!=null)
 				this.showMenu();
 			

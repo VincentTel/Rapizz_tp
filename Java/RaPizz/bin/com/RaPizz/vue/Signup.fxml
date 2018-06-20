@@ -14,35 +14,35 @@
             <ImageView fx:id="Profil_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                
             </ImageView>
-            <TextField fx:id="Username_TextField" alignment="CENTER" maxWidth="200.0" promptText="Username">
+            <TextField fx:id="Username_TextField" alignment="CENTER" maxWidth="200.0" promptText="Nom d'utilisateur">
               
             </TextField>
-            <TextField fx:id="Password_TextField" alignment="CENTER" maxWidth="200.0" promptText="Password">
+            <TextField fx:id="Password_TextField" alignment="CENTER" maxWidth="200.0" promptText="Mot de passe">
                
             </TextField>
-            <TextField fx:id="LastName_TextField" alignment="CENTER" maxWidth="200.0" promptText="Last Name">
+            <TextField fx:id="LastName_TextField" alignment="CENTER" maxWidth="200.0" promptText="Nom de famille">
               
             </TextField>
-            <TextField fx:id="FirstName_TextField" alignment="CENTER" maxWidth="200.0" promptText="First Name">
+            <TextField fx:id="FirstName_TextField" alignment="CENTER" maxWidth="200.0" promptText="Prénom">
                
             </TextField>
             <TextField fx:id="Email_TextField" alignment="CENTER" maxWidth="200.0" promptText="Email">
               
             </TextField>
-            <TextField fx:id="Number_TextField" alignment="CENTER" maxWidth="200.0" promptText="Number">
+            <TextField fx:id="Number_TextField" alignment="CENTER" maxWidth="200.0" promptText="Numéro de rue">
                
             </TextField>
-            <TextField fx:id="Street_TextField" alignment="CENTER" maxWidth="200.0" promptText="Street">
+            <TextField fx:id="Street_TextField" alignment="CENTER" maxWidth="200.0" promptText="Rue">
               
             </TextField>
-            <TextField fx:id="City_TextField" alignment="CENTER" maxWidth="200.0" promptText="City">
+            <TextField fx:id="City_TextField" alignment="CENTER" maxWidth="200.0" promptText="Ville">
                
             </TextField>
-            <TextField fx:id="Zip_TextField" alignment="CENTER" maxWidth="200.0" promptText="Zip">
+            <TextField fx:id="Zip_TextField" alignment="CENTER" maxWidth="200.0" promptText="Code postal">
                
             </TextField>
-            <Button fx:id="Register_Button" mnemonicParsing="false" text="Register" />
-              <Button fx:id="Cancel_Button" mnemonicParsing="false" text="Cancel" />
+            <Button fx:id="Register_Button" mnemonicParsing="false" text="Inscription" />
+              <Button fx:id="Cancel_Button" mnemonicParsing="false" text="Annuler" />
          </children>
       </VBox>
    </children>

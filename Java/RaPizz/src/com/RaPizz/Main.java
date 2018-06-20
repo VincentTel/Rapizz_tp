@@ -12,12 +12,10 @@ import com.RaPizz.controleur.Mediateur;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -36,11 +34,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
         hostServices = getHostServices();
-        Font.loadFont("com/RaPizz/images/pizzfont.ttf", 10);
-        Font.loadFont("com/RaPizz/images/heydings_icons.ttf", 10);
         
 		Properties prop = new Properties();
 		InputStream input = null;
+
+		Font.loadFont(getClass().getResource("/com/RaPizz/images/heydings_icons.TTF").toExternalForm(), 10);
 		
 		Font.loadFont(getClass().getResource("/com/RaPizz/images/pizzfont.TTF").toExternalForm(), 10);
 		

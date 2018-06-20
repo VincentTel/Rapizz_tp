@@ -58,6 +58,7 @@ public class OrderPizzaDao extends DAO{
 							{
 								pr_stmt2.setFloat(2,client.getSolde().getValue());
 								client.setSolde(client.getSolde().getValue());
+								client.setPizzaGratuite(0);
 							}
 							else
 							{

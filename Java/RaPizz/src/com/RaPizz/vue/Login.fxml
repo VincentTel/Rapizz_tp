@@ -14,7 +14,7 @@
          <children>
             <ImageView fx:id="logo_ImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="88.0" prefWidth="154.0" text="100, Rue de l'Alma - 59100 Roubaix - 07.64.62.59.59  - Mail : contact@rapizz.com" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" />
-            <Label layoutX="16.0" layoutY="160.0" prefHeight="150.0" prefWidth="188.0" text="Lundi: 11:30-14:30, 18:30-22:30 Mardi: 11:30-14:30, 18:30-22:30 Mercredi: 11:30-14:30, 18:30-22:30 Jeudi: 11:30-14:30, 18:30-22:30 Vendredi: 18:30-23:30 Samedi: 11:30-14:30, 18:30-23:30 Dimanche: 18:30-22:30" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" />
+            <Label layoutX="16.0" layoutY="160.0" prefHeight="150.0" prefWidth="188.0" text="Lundi: 11:30-14:30, 18:30-22:30 Mardi: 11:30-14:30, 18:30-22:30 Mercredi: 11:30-14:30, 18:30-22:30 Jeudi: 11:30-14:30, 18:30-22:30 Vendredi: 18:30-23:30                       Samedi: 11:30-14:30, 18:30-23:30 Dimanche: 18:30-22:30" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" />
             
             <TextField fx:id="Username_TextField" alignment="CENTER" maxWidth="200.0" promptText="Nom d'utilisateur">
                <VBox.margin>

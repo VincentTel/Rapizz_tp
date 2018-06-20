@@ -29,6 +29,8 @@ public class ManageCommandeControleur extends AbstractControleur
 	@FXML
 	private TableView<Commande> Commande_TableView;
 	@FXML
+	private TableColumn<Commande,Long> ID_TableColumn;
+	@FXML
 	private TableColumn<Commande, Number> PrixTotal_TableColumn;
 	@FXML
 	private TableColumn<Commande, Timestamp> DateCommande_TableColumn;
@@ -54,6 +56,8 @@ public class ManageCommandeControleur extends AbstractControleur
 		/* Grid part */
 
 		ManageCommande_BorderPane.getStyleClass().add("MenuBG");
+		ID_TableColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<Long>(
+				cellData.getValue().getID_Commande()));
 		
 		PrixTotal_TableColumn
 				.setCellValueFactory(cellData -> new SimpleFloatProperty(

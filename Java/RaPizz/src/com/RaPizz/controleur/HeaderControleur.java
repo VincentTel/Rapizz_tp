@@ -29,7 +29,8 @@ public class HeaderControleur extends AbstractControleur {
 	private Button Liraison_button;
 	@FXML
 	private Button Vehicule_button;
-
+	@FXML
+	private Button Stats_button;
 	@FXML
 	private HBox header_HBox;
 	@FXML
@@ -66,6 +67,8 @@ public class HeaderControleur extends AbstractControleur {
 		Liraison_button.setOnAction(x->showManageCommande());
 		Vehicule_button.setOnAction(x->showManageVehicule());
 		Ingredients_button.setOnAction(x->showManageIngredient());
+		Stats_button.setOnAction(x->showStats());
+		
 		
 		facebook_ImageView.setImage(new Image("com/RaPizz/images/fb.png"));
 		facebook_ImageView.setOnMouseClicked(x->goToUrl("https://www.facebook.com/rapizz.fr"));
@@ -82,6 +85,7 @@ public class HeaderControleur extends AbstractControleur {
 		Liraison_button.getStyleClass().add("MenuButton");
 		Vehicule_button.getStyleClass().add("MenuButton");
 		Disconnect_button.getStyleClass().add("MenuButton");
+		Stats_button.getStyleClass().add("MenuButton");
 		update();
     }
 	
@@ -93,13 +97,13 @@ public class HeaderControleur extends AbstractControleur {
 	@Override
 	public void update() {
 		MenuModele menu = (MenuModele) this.getModele(Contr.MENU);
-		if(menu.getClientProperty().getValue() != null && header_HBox.getChildren().contains(menu_HBox)  )
+		if(menu.getClientProperty().getValue() != null )
 		{
 			header_HBox.getChildren().remove(menu_HBox);
 			if(!header_HBox.getChildren().contains(info_HBox))
 				header_HBox.getChildren().add(info_HBox);
 		}
-		else if (!header_HBox.getChildren().contains(menu_HBox)  )
+		else if( !header_HBox.getChildren().contains(menu_HBox))
 		{
 			header_HBox.getChildren().add(menu_HBox);
 			if(header_HBox.getChildren().contains(info_HBox))

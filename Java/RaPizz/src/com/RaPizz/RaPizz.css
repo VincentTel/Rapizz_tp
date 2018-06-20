@@ -21,6 +21,12 @@
 .RedBG
 {
 	-fx-background-color:  #c00a27;
+	/*-fx-background-image: url('images/bgbrique.png');
+	-fx-background-repeat: no-repeat;
+-fx-background-size: cover, auto;*/
+}
+.lv .list-cell {
+    -fx-alignment: center;
 }
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
@@ -89,7 +95,6 @@
 }
 .PizzaBox
 {
-	
  	-fx-background-color: #333e48;
     -fx-background-radius: 5.0;
     -fx-padding: 5;

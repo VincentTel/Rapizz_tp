@@ -3,6 +3,7 @@ package com.RaPizz.modele.service;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.RaPizz.modele.dao.HomeDao;
@@ -14,6 +15,7 @@ import com.RaPizz.modele.dao.ManageLivreurDao;
 import com.RaPizz.modele.dao.ManagePizzaDao;
 import com.RaPizz.modele.dao.ManageVehiculeDao;
 import com.RaPizz.modele.dao.OrderPizzaDao;
+import com.RaPizz.modele.dao.StatsDAO;
 import com.RaPizz.modele.gui.OderItemTemplate;
 import com.RaPizz.modele.metier.Client;
 import com.RaPizz.modele.metier.Commande;
@@ -36,6 +38,7 @@ public class Service {
 	private ManageCommandeDao manageCommandeDao;
 	private ManageVehiculeDao manageVehiculeDao;
 	private ManageIngredientDao manageIngredientDao;
+	private StatsDAO statsDAO;
 	
 	public Service() {
 		try {
@@ -53,6 +56,7 @@ public class Service {
 		manageCommandeDao = new ManageCommandeDao(connection);
 		manageVehiculeDao = new ManageVehiculeDao(connection);
 		manageIngredientDao = new ManageIngredientDao(connection);
+		statsDAO = new StatsDAO(connection);
 	}		
 	
 	public void close() throws SQLException {
@@ -201,5 +205,59 @@ public class Service {
 	public void AddVehicule(Vehicule v)
 	{
 		manageVehiculeDao.AddVehicule(v);
+	}
+	
+
+	public String getCaPeriode(Timestamp debut, Timestamp fin)
+	{
+		return statsDAO.getCaPeriode(debut, fin);		
+	}
+
+	public String getBestClient()
+	{
+		return statsDAO.getBestClient();
+	}
+
+	public String getIngredientFav()
+	{
+		return statsDAO.getIngredientFav();	
+	}
+
+	public String getPizzaPlusDMD()
+	{
+		return statsDAO.getPizzaPlusDMD();
+		
+	}
+
+	public String getPizzaMoinsDMD()
+	{
+		return statsDAO.getPizzaMoinsDMD();
+	}
+	
+
+	public String getPireLivreur()
+	{
+		return statsDAO.getPireLivreur();
+	}
+	
+
+	public String getCommandeMoyenne()
+	{
+		return statsDAO.getCommandeMoyenne();		
+	}
+
+	public List<Vehicule> getVehiculeUtilise()
+	{
+		return statsDAO.getVehiculeUtilise();		
+	}
+
+	public List<Client> getClientAboveAverage()
+	{
+		return statsDAO.getClientAboveAverage();
+	}
+
+	public List<Commande> getCommandeByIdClient(long Id)
+	{
+		return statsDAO.getCommandeByIdClient(Id);
 	}
 }

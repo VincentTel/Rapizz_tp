@@ -181,6 +181,7 @@ public class HomeControleur extends AbstractControleur{
 					hb.getChildren().add(composition);
 					hb.getChildren().add(ch);
 					hb.getChildren().add(add);
+
 					Client_popularPizza_HBox.getChildren().add(hb);					
 				}	
 				

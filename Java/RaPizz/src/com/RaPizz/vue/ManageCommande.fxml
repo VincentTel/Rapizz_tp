@@ -9,6 +9,7 @@
    <center>
       <TableView fx:id="Commande_TableView" prefHeight="390.0" prefWidth="387.0" BorderPane.alignment="CENTER">
         <columns>
+         <TableColumn fx:id="ID_TableColumn" text="ID" />
           <TableColumn fx:id="PrixTotal_TableColumn" text="Prix total" />
           <TableColumn fx:id="DateCommande_TableColumn" text="Date de commande" />
             <TableColumn fx:id="DateLivraison_TableColumn" text="Date de livraison" />

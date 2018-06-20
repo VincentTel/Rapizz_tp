@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane fx:id="Stats_AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RaPizz.controleur.StatsControleur">
+   <children>
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+           <Label text="Statistiques" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+            </Label>
+            <ImageView fx:id="Line_ImageView" fitHeight="2" fitWidth="700" pickOnBounds="true" preserveRatio="false" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Chiffre d'affaires: " textFill="WHITE" />
+                  <Label fx:id="CA_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Meilleur Client: " textFill="WHITE" />
+                  <Label fx:id="BestClient_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Ingredient Favori: " textFill="WHITE" />
+                  <Label fx:id="IngredientFav_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Pizza la plus demandée: " textFill="WHITE" />
+                  <Label fx:id="PizzaPlusDMD_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Pizza la moins demandée: " textFill="WHITE" />
+                  <Label fx:id="PizzaMoinsDMD_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Le plus mauvais livreur: " textFill="WHITE" />
+                  <Label fx:id="PireLivreur_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Commande Moyenne: " textFill="WHITE" />
+                  <Label fx:id="CommandeMoyenne_Label" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label text="Clients au dessus de la moyenne:" textFill="WHITE" />
+            <ListView fx:id="Client_listview" prefHeight="300.0" prefWidth="200.0" />
+            <Label text="Vehicules utilisation:" textFill="WHITE" />
+            <ListView fx:id="Vehicule_listview" prefHeight="300.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
-
